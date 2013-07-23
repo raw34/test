@@ -58,3 +58,10 @@ while ($it->valid()) {
     echo '<br/>';
     $it->next();
 }
+
+$items = new ArrayObject(range('a', 'j'));
+$it = $items->getIterator();
+foreach ($it as $k => $v) {
+    var_dump($k, $v); 
+    echo '<br/>';
+}
