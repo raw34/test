@@ -1,7 +1,7 @@
 <?php
 header( 'content-type: text/plain' );
 
-Book::enumerate('Book');
+Book::enumerate();
 Book::$COMIC->read();
 read(Book::$EDUCATIONAL);
 read(Book::$NOVEL );
@@ -37,9 +37,9 @@ class Book extends Enum
     public static $NOVEL = 'novel';
     public static $EDUCATIONAL = 'edu';
 
-    public static function enumerate($class)
+    public static function enumerate($class = __CLASS__)
     {
-        parent::enumerate(__CLASS__);
+        parent::enumerate($class);
     }
     public function read()
     {
