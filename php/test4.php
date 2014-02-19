@@ -53,4 +53,15 @@ for($i=0;$i<10;$i++){
 }
 echo '<br/>sum = ', $sum;
 echo '<br/>sum = ', (int) $sum;
+$arr4 = array(
+    array('title'=>'aaa','link'=>'sss'),
+    array('title'=>'bbb','link'=>'sss')
+);
+echo '<pre>';
+print_r($arr4);
+echo '</pre>';
+echo '<pre>'; var_dump(json_encode($arr4)); echo '</pre>';
+
+$str1 = '[{"title":"aaa","link":"sss"},{"title":"bbb","link":"sss"}]';
+echo '<pre>'; var_dump(json_decode($str1, true)); echo '</pre>';
 ?>
