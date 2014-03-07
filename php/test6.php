@@ -4,7 +4,7 @@ require_once '../../Pinyin/Pinyin.php';
 
 $file = fopen('tags1.csv', 'r');
 $tags = array();
-while (! feof($file)) {
+while (!feof($file)) {
     $row = fgets($file);
     $arr = explode(',', trim($row));
     $i = 0;
