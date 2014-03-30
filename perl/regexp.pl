@@ -1,4 +1,23 @@
 #
+
+sub check_title {
+    my $title = shift;
+    if ($title =~ /降|让利|优惠/) {
+        print "\n匹配到 降|让利|优惠";
+    }
+}
+
+my $title = 'ssssss';
+check_title($title);
+$title = '降低xxx';
+check_title($title);
+$title = '让利xx';
+check_title($title);
+
+
+
+
+=pod
 my $str1 = '中文111@0#';
 my $str2 = '32302304((##';
 
@@ -12,7 +31,6 @@ if ($str2 =~ /([\x80-\xFF][\x80-\xFF])/) {
     print "\nchinese4";
 }
 
-=pod
 if ($str1 =~ /([\x80-\xFF])/) {
     print "\nchinese5";
 }
@@ -24,7 +42,6 @@ if ($str1 =~ /[\u4e00-\u9fa5]/) {
 if ($str2 =~ /[\u4e00-\u9fa5]/) {
     print "\nchinese2";
 }
-=cut
 
 my $html = qq~
 <div class="front_term_list ft1">
@@ -155,3 +172,7 @@ my $html = qq~
 while($html =~ /<div class="litpic"\><a href[^\>]*?\><img src="(.*?)"[^\>]*?\>.*?<h3\><a href[^\>]*?\>(.*?)<\/a\><\/h3\>/) {
 
 }
+=cut
+
+
+
