@@ -3,15 +3,54 @@
 sub check_title {
     my $title = shift;
     if ($title =~ /降|让利|优惠/) {
-        print "\n匹配到 降|让利|优惠";
+        #print "\n匹配到 降|让利|优惠";
+        my $sales = getSales($title);
+        print ' ', $sales, "\n";
+        $title =~ s/$sales/<span class="redFont"\>$sales<\/span\>/;
     }
+    return $title;
 }
 
-my $title = 'ssssss';
+sub getSales {
+    my $title = shift;
+
+    if ($title =~ /千/ && $title !~ /元/) {
+        $title =~ s/千/千元/g;
+    }
+    if ($title =~ /万/ && $title !~ /元/) {
+        $title =~ s/万/万元/g;
+    }
+
+    #print $title;
+
+    if ($title =~ /降(\d*\.?\d+(千|万)?元)/) {
+        print 'case1';
+    }
+    elsif ($title =~ /让利(\d*\.?\d+(千|万)?元)/) {
+        print 'case2';
+    }
+    elsif ($title =~ /(\d*\.?\d+(千|万)?元)优惠/) {
+        print 'case3';
+    }
+    elsif ($title =~ /优惠(\d*\.?\d+(千|万)?元)/) {
+        print 'case4';
+    }
+    else {
+        print 'case5';
+        return ''; 
+    }
+
+    return $1;
+}
+
+my $title = '';
+$title = '3千元优惠';
 check_title($title);
-$title = '降低xxx';
+$title = '降3000元';
 check_title($title);
-$title = '让利xx';
+$title = '让利20.5万元';
+check_title($title);
+$title = '优惠10万元';
 check_title($title);
 
 
