@@ -4,17 +4,20 @@ function get_videos_by_username(user, keyword, page, pagesize) {
         var api = 'http://gdata.youtube.com/feeds/api/users/'+ user +'/uploads';
         var params1 = typeof(keyword) != 'undefined' ? '&q=' + encodeURIComponent(keyword) : '';
         var params2 = '' + params1;
+        page = typeof(page) != 'undefined' ? pagesize * (Number(page) - 1) + 1 : 1;
+        params1 += '&start-index=' + page;
         pagesize = typeof(pagesize) != 'undefined' ? Number(pagesize) : 10;
-        page = typeof(page) != 'undefined' ? pagesize * Number(page) + 1 : pagesize + 1;
-        params1 += '&start-index=' + page + '&max-results=' + pagesize;
+        params1 += '&max-results=' + pagesize;
+        params2 += '&max-results=' + pagesize;
         //params1 += typeof(keyword) != 'undefined' ? '&q=' + encodeURI(keyword) : '';
         //params1 += typeof(keyword) != 'undefined' ? '&q=' + keyword : '';
 
-        api += '?alt=json-in-script&callback=?&' + params1;
-        console.log(api);
+        api += '?alt=json-in-script&callback=?' + params1;
+        //console.log(api);
         $.getJSON(api, function(json){
             //console.log(json['feed']['entry']);
-            var total = json['feed']['openSearch$totalResults'];
+            //console.log(json);
+            var total = json['feed']['openSearch$totalResults']['$t'];
             var data = json['feed']['entry'];
             var html = '';
             for (var i = 0, l = data.length; i < l; i ++) {
@@ -34,6 +37,7 @@ function get_videos_by_username(user, keyword, page, pagesize) {
             }
             $('#video_list').append(html);
             var p = new getPage(total, pagesize, page, 5, params2, 'get_videos_by_username');
+            //console.log(p);
             $('#pagination').html(p.html);
         });
     }

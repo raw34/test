@@ -31,6 +31,9 @@ function josehpus2(n, m) {
 //分页类
 function getPage(total, pageSize, page, show, columns, fun, prefix){
     //var this = this;
+    console.log('total =' + total);
+    console.log('pagesize = ' + pageSize);
+    console.log('page = ' + page);
     this.total = total;//数据总条数，必选
     this.pageSize = pageSize;//每页显示数据条数，必选
     this.page = page != undefined ? Number(page) : 1;//当前页号
@@ -118,7 +121,7 @@ function getPage(total, pageSize, page, show, columns, fun, prefix){
                 html += ' <a href="javascript:'+fun+'('+"'page=1&"+col+"'"+')" target="_self">1</a> ';
                 html += i > 2 ? ' <span class="break">...</span> ' : '';
             }
-            while(i <= len){
+            while(i < len){
                 if(i == this.page){
                     html += ' <a href="javascript:void(0)" target="_self" class="current">'+i+'</a> ';
                 }else{
@@ -157,62 +160,4 @@ function getPage(total, pageSize, page, show, columns, fun, prefix){
     this.end = this.getEnd();
     this.pos = this.getPos();
     this.html = this.getHTML();
-}
-
-function data_rander(str) {
-    var api = 'http://weidealer.auto.sina.com.cn/1212/ajax_page.php';
-    var arr_allow = ['page', 'pagesize', 'province', 'city', 'bid', 'sub_brand_id', 'autoType', 'priceRange'];
-    var hash_allow = {};
-    var arr_input = str.split(/&/);
-    var params1 = '';
-    var params2 = '';
-    for (var i = 0, l = arr_input.length; i < l; i ++) {
-        var temp = arr_input[i].split('=');
-        if ($.inArray(temp[0], arr_allow) > -1) {
-            params1 += '&' + arr_input[i];
-            if (!/page/.test(arr_input[i])) {
-                params2 += '&' + arr_input[i];
-            }
-            hash_allow[temp[0]] = temp[1];
-        }
-    }
-
-    $.getJSON(api + '?callback=?&action=api' + params1, function(json){
-        var total = json['total'];
-        var pagesize = typeof(hash_allow['pagesize']) != 'undefined' ? hash_allow['pagesize'] : 8;
-        var page = typeof(hash_allow['page']) != 'undefined' ? hash_allow['page'] : 1;
-        if (total > 0) {
-            var html = '';
-            var sytle = '';
-            var data = json['data'];
-            for (var i = 0, l = data.length; i < l; i ++) {
-                style = (i + 1) % 4 == 0 ? 'last' : '';
-                html += '<li class="fL '+ style +'">';
-                html += '    <div class="img hover">';
-                html += '        <a href="'+ data[i]['httpUrl'] +'" target="_blank">';
-                html += '            <img src="'+ data[i]['pic'] +'" alt="">';
-                html += '        </a>';
-                html += '        <a class="air" href="'+ data[i]['httpUrl'] +'" target="_blank">';
-                html += '            <i class="air-b">layer</i>';
-                html += '            <i class="air-w">'+ data[i]['car_name'] +'</i>';
-                html += '        </a>';
-                html += '        <!--<i class="sale">优惠12.52万</i>-->';
-                html += '    </div>';
-                html += '    <div class="cbut clearfix">';
-                html += '        <p class="ct fL">';
-                html += '            <span class="cost">'+ data[i]['price'] +'万</span>';
-                html += '        </p>';
-                html += '        <a class="butt fR" href="'+ data[i]['httpUrl'] +'" target="_blank">去砍价</a>';
-                html += '    </div>';
-                html += '</li>';
-            }
-            $('#car_list').html(html);
-            var p = new getPage(total, pagesize, page, 5, params2, 'data_rander');
-            $('.pagination').html(p.html).css("display", "block");
-        } else {
-            var html = '<span class="no">\u5bf9\u4e0d\u8d77\uff0c\u6ca1\u6709\u60a8\u6240\u9700\u7684\u6570\u636e\uff01</span>';
-            $('#car_list').html(html);
-            $('.pagination').css("display", "none");
-        }
-    });
 }
