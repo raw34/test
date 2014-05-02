@@ -81,7 +81,7 @@ function getPage(total, pageSize, page, show, columns, fun, prefix){
         //获取循环开始结束位置
         getPage.prototype.getPos = function(){
             var i,num;
-            if(this.maxPage < this.show){
+            if(this.maxPage <= this.show  + 4){
                 i = 1;
                 num = this.maxPage;
             }else if(this.page <= this.show){
@@ -121,7 +121,8 @@ function getPage(total, pageSize, page, show, columns, fun, prefix){
                 html += ' <a href="javascript:'+fun+'('+"'page=1&"+col+"'"+')" target="_self">1</a> ';
                 html += i > 2 ? ' <span class="break">...</span> ' : '';
             }
-            while(i < len){
+            while(i <= len){
+                //console.log(i);
                 if(i == this.page){
                     html += ' <a href="javascript:void(0)" target="_self" class="current">'+i+'</a> ';
                 }else{

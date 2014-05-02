@@ -5,23 +5,42 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="function.js"></script>
-    <script src="youtube.js"></script>
+    <script src="youtube1.js"></script>
+    <style>
+        .wrap{width:1000px;margin:0 auto;}
+        #video_list span{width:180px;margin-left:5px;}
+    </style>
 </head>
 <body>
     <div class="wrap">
         <dl id="video_list">
             <dt>
-                <span>序号</span>
-                <span>标题</span>
-                <span>图片</span>
-                <span>播放地址</span>
-                <span>flash地址</span>
+                <span class="line1">序号</span>
+                <span class="line2">标题</span>
+                <span class="line3">图片</span>
+                <span class="line4">播放地址</span>
+                <span class="line5">flash地址</span>
             </dt>
         </dl>
         <div id="pagination"></div>
+        <button id="orderit">重新排序</button>
     </div>
     <script type="text/javascript">
-        get_videos_by_username('yoshihiro1127', '世にも奇妙な物語', 1, 20);
+        get_videos_by_username('user=yoshihiro1127&q=世にも奇妙な物語&page=1&max-results=40');
+        $('#orderit').click(function(){
+            var data = [];
+            $('#video_list > dd').each(function(){
+                var order = Number($(this).find('span').eq(0).html());
+                data[order] = $(this).html();
+            });
+            var html = '';
+            for (var i = 0, l = data.length; i < l; i ++) {
+                if (data[i] != undefined) {
+                    html += '<dd>' + data[i] + '</dd>';
+                }
+            }
+            $('#video_list').html(html);
+        });
     </script>
 </body>
 </html>
