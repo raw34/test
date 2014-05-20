@@ -5,6 +5,7 @@
 class Test
 {
     static protected $car = 20;
+    protected $id = 2;
     //public $car;
     private $item;
     /**
@@ -31,6 +32,7 @@ class Test1 extends Test
         //$this->car = 30;
         self::$car = 30;
         echo 'this->car = ', self::$car, ' parent->car = ', parent::$car;
+        echo '<br/>id = ', $this->id;
     }
 }
 
