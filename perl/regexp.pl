@@ -1,5 +1,9 @@
 #
+my $str = ',nono,';
+$str =~ s/^,//;
+print $str;
 
+=pod
 sub check_title {
     my $title = shift;
     if ($title =~ /降|让利|优惠/) {
@@ -53,7 +57,7 @@ check_title($title);
 $title = '优惠10万元';
 check_title($title);
 
-
+=cut
 
 
 =pod
