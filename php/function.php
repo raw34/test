@@ -57,4 +57,6 @@ shuffle($a);
 echo '<pre>'; var_dump($a); echo '</pre>';
 $a = bubble_sort($a);
 echo '<pre>'; var_dump($a); echo '</pre>';
-?>
+
+
+echo 'hostname = ', gethostname();
