@@ -13,13 +13,15 @@ my @arr_input = split(/#{10}/, $str_input);
 my %hash_output = ();
 foreach (@arr_input) {
     my ($title, $content) = split(/#{3}/, $_);
-    $title_s = substr($title, 0, 10);
+    $title =~ /(\d+)、/;
+    $title_s = $1;
     $hash_output{$title_s} = {'title' => $title, 'content' => $content};
 }
 
 #print scalar(keys(%hash_output));
 my $str_output = '';
-foreach my $key(keys %hash_output) {
+foreach my $key(sort {$a <=> $b} keys %hash_output) {
+    print $key, "\n";
     $str_output .= "$hash_output{$key}{'title'}\n$hash_output{$key}{'content'}";
 }
 

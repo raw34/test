@@ -3436,21 +3436,21 @@ B．Use du /
 C．Use du.
 D．Use df.
 ##########
-#370、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
+#205、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
 ###
 A．0 13,20 * * 1,5 mybackup
 B．0 13,20 * * 1,2,3,4,5, mybackup
 C．*13,20 * *1,2,3,4,5, mybackup
 D．0 13,20 1,5 * *mybackup
 ##########
-#371、下面哪条命令可以把f1.txt复制为f2.txt？A
+#280、下面哪条命令可以把f1.txt复制为f2.txt？A
 ###
 A．cp f1.txt|f2.txt
 B．cat f1.txt|f2.txt
 C．cat f1.txt|f2.txt
 B．copy f1.txt|f2.txt
 ##########
-#372、 使用命令可以查看Linux的启动信息？B
+#340、 使用命令可以查看Linux的启动信息？B
 ###
 A．mesg –d
 B．demesg
@@ -5653,21 +5653,21 @@ B．Use du /
 C．Use du.
 D．Use df.
 ##########
-#370、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
+#205、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
 ###
 A．0 13,20 * * 1,5 mybackup
 B．0 13,20 * * 1,2,3,4,5, mybackup
 C．*13,20 * *1,2,3,4,5, mybackup
 D．0 13,20 1,5 * *mybackup
 ##########
-#371、下面哪条命令可以把f1.txt复制为f2.txt？A
+#280、下面哪条命令可以把f1.txt复制为f2.txt？A
 ###
 A．cp f1.txt|f2.txt
 B．cat f1.txt|f2.txt
 C．cat f1.txt|f2.txt
 B．copy f1.txt|f2.txt
 ##########
-#372、 使用命令可以查看Linux的启动信息？B
+#340、 使用命令可以查看Linux的启动信息？B
 ###
 A．mesg –d
 B．demesg
@@ -7480,21 +7480,21 @@ B．Use du /
 C．Use du.
 D．Use df.
 ##########
-#370、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
+#205、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
 ###
 A．0 13,20 * * 1,5 mybackup
 B．0 13,20 * * 1,2,3,4,5, mybackup
 C．*13,20 * *1,2,3,4,5, mybackup
 D．0 13,20 1,5 * *mybackup
 ##########
-#371、下面哪条命令可以把f1.txt复制为f2.txt？A
+#280、下面哪条命令可以把f1.txt复制为f2.txt？A
 ###
 A．cp f1.txt|f2.txt
 B．cat f1.txt|f2.txt
 C．cat f1.txt|f2.txt
 B．copy f1.txt|f2.txt
 ##########
-#372、 使用命令可以查看Linux的启动信息？B
+#340、 使用命令可以查看Linux的启动信息？B
 ###
 A．mesg –d
 B．demesg
@@ -9155,21 +9155,21 @@ B．Use du /
 C．Use du.
 D．Use df.
 ##########
-#370、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
+#205、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
 ###
 A．0 13,20 * * 1,5 mybackup
 B．0 13,20 * * 1,2,3,4,5, mybackup
 C．*13,20 * *1,2,3,4,5, mybackup
 D．0 13,20 1,5 * *mybackup
 ##########
-#371、下面哪条命令可以把f1.txt复制为f2.txt？A
+#280、下面哪条命令可以把f1.txt复制为f2.txt？A
 ###
 A．cp f1.txt|f2.txt
 B．cat f1.txt|f2.txt
 C．cat f1.txt|f2.txt
 B．copy f1.txt|f2.txt
 ##########
-#372、 使用命令可以查看Linux的启动信息？B
+#340、 使用命令可以查看Linux的启动信息？B
 ###
 A．mesg –d
 B．demesg
@@ -10819,21 +10819,21 @@ B．Use du /
 C．Use du.
 D．Use df.
 ##########
-#370、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
+#205、有一个备份程序mybackup,需要在周一至周五下午一点和晚上八点各运行次，下面哪一条crontab的项可以完成这项工作？B
 ###
 A．0 13,20 * * 1,5 mybackup
 B．0 13,20 * * 1,2,3,4,5, mybackup
 C．*13,20 * *1,2,3,4,5, mybackup
 D．0 13,20 1,5 * *mybackup
 ##########
-#371、下面哪条命令可以把f1.txt复制为f2.txt？A
+#280、下面哪条命令可以把f1.txt复制为f2.txt？A
 ###
 A．cp f1.txt|f2.txt
 B．cat f1.txt|f2.txt
 C．cat f1.txt|f2.txt
 B．copy f1.txt|f2.txt
 ##########
-#372、 使用命令可以查看Linux的启动信息？B
+#340、 使用命令可以查看Linux的启动信息？B
 ###
 A．mesg –d
 B．demesg
