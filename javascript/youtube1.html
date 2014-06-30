@@ -26,7 +26,9 @@
         <button id="orderit">重新排序</button>
     </div>
     <script type="text/javascript">
-        get_videos_by_username('user=yoshihiro1127&q=世にも奇妙な物語&page=1&max-results=40');
+        var user = 'yoshihiro1127';
+        user = '5KleinBoysene4';
+        get_videos_by_username('user='+ user +'&q=世にも奇妙な物語&page=1&max-results=40');
         $('#orderit').click(function(){
             var data = [];
             $('#video_list > dd').each(function(){
