@@ -1,7 +1,9 @@
 #
+=pod
 my $str = ',nono,';
 $str =~ s/^,//;
 print $str;
+=cut
 
 =pod
 sub check_title {
@@ -217,5 +219,14 @@ while($html =~ /<div class="litpic"\><a href[^\>]*?\><img src="(.*?)"[^\>]*?\>.*
 }
 =cut
 
+my $str1 = 'см';
+my $str2 = 'йсм╪';
 
+if($str1 =~ /см/){
+print '<br/>', $str1, ' =~ см', "\n";  
+}
+
+if($str2 =~ /см/){
+print '<br/>', $str2, ' =~ см', "\n";  
+}
 

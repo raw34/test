@@ -2,7 +2,7 @@
 /*
  * 约瑟夫环
  */
-function josehpus1($n, $m) {
+function josephus1($n, $m) {
     $a = array();
     for ($i = 1; $i <= $n; $i++) {
         $a[] = $i;
@@ -21,7 +21,7 @@ function josehpus1($n, $m) {
     return $a[0];
 }
 
-function josehpus2($n, $m) {
+function josephus2($n, $m) {
     $s = 0;
     for ($i = 2; $i <= $n; $i ++) {
         $s = ($s + $m) % $i;
@@ -29,9 +29,9 @@ function josehpus2($n, $m) {
     return $s + 1;
 }
 
-echo josehpus1(10, 7);
+echo josephus1(10, 7);
 echo '<br/>';
-echo josehpus2(10, 7);
+echo josephus2(10, 7);
 
 //冒泡排序法
 function bubble_sort($a) {
