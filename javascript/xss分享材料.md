@@ -108,7 +108,7 @@ XXS根据效果的不同可以分成几类：
 通过修改页面的DOM节点形成的XSS，称之为DOM Based XSS。
 
 ##攻击
-1. XSS Payload
+###XSS Payload
 前文谈到了XSS的几种分类。接下来，就从攻击的角度来体验一下XSS的威力。
 XSS攻击成功后，攻击者能够对用户当前浏览器的页面植入恶意脚本，通过恶意脚本，控制用户的浏览器。
 这些用以完成各种具体功能的恶意脚本，被称为“XSS Payload”。
@@ -117,7 +117,7 @@ Cookie中一般加密保存了当前用户的登录凭证。Cookie如果丢失�
 换句话说，攻击者可以不通过密码，而直接登录进用户的账户。
 例子。
 
-2. 强大的XSS Payload
+###强大的XSS Payload
 “Cookie劫持”并非所有的时候都会有效。
 有的网站可能会在Set-Cookie时给关键Cookie植入HttpOnly标识，有的网站可能会吧Cookie与客户端IP绑定，从而使得XSS窃取的Cookie失去意义。
 尽管如此，在XSS攻击成功后，攻击者仍然有许多方式能控制用户的浏览器。
@@ -128,26 +128,26 @@ Cookie中一般加密保存了当前用户的登录凭证。Cookie如果丢失�
 - CSS History Hack
 - 获取用户的真实IP地址
 
-3. XSS攻击平台（略）
+###XSS攻击平台（略）
 
-4. XSS Worm
+###XSS Worm
 XSS Worm是XSS的一种终极利用方式，它的破坏力和影响力是巨大的。但是发起XSS Worm攻击也有一定的条件。
 一般来说，用户之间发生交互行为的页面，如果存在存储型XSS，则比较容易发起XSS Worm攻击。
 比如发送站内信、用户留言等页面，都是XSS Worm的高发区，需要重点关注。
 而相对的，如果一个页面只能由用户个人查看，比如“用户个人资料设置”页面，因为缺乏用户之间的互动功能，所以即使存在XSS，也不能被用于XSS Worm的传播。
 例子。
 
-5. 调试javascript（略）
+###调试javascript（略）
 
-6. XSS构造技巧
+###XSS构造技巧
 - 利用字符编码
 - 绕过长度限制
 - 使用<base>标签
 - window.name的妙用
 
-7. 变废为宝（略）
+###变废为宝（略）
 
-8. Flash XSS
+###Flash XSS
 前文提到的XSS攻击都是基于HTML的，其实Flash中同样也可能造成XSS攻击。
 在flahs中是可以嵌入ActionScript脚本的。
 ActionScript是一种强大和灵活的脚本，甚至可以使用它发起网络连接，因此应该尽可能的禁止用户能够上传或加载自定义的flash文件。
@@ -157,10 +157,10 @@ ActionScript是一种强大和灵活的脚本，甚至可以使用它发起网�
 flv文件是静态文件，不会产生安全隐患。
 如果是带动态脚本的flash，则可以通过flash的配置参数进行限制。
 
-9. javascript开发框架（略）
+###javascript开发框架（略）
 
 ##防御
-1. HttpOnly
+###HttpOnly
 HttpOnly最早是由微软提出的，并在IE6中实现的，至今已经逐渐成为一个标准。
 浏览器将禁止页面的javascript访问带有HttpOnly属性的cookie。
 严格的说，HttpOnly并非为了对抗XSS，HttpOnly解决的是XSS后的cookie劫持攻击。
@@ -174,7 +174,7 @@ HttpOnly是在Set-Cookie时标记的。
 某些时候，应用可能需要javascript访问某些Cookie，这种Cookie可以不设置HttpOnly标记，而仅把HttpOnly标记给用于认证的关键Cookie。
 使用HttpOnly有助于缓解XSS攻击，但仍然需要其他能够解决XSS漏洞的方案。
 
-2. 输入检查
+###输入检查
 常见的Web漏洞如XSS、SQL Injection等，都需要攻击者构造一些特殊字符，这些特殊字符可能是正常用户不会用到的，所以输入检查就有存在的必要了。
 输入检查的逻辑，必须放在服务器端代码中实现。如果只是在客户端使用javascript进行输入检查，是很容易被攻击者绕过的。目前web开发的普遍做法，是同时在客户端javascript和服务器端中实现相同的输入检查。
 客户端javascript的输入检查，可以阻挡大部分误操作的正常用户，从而节约服务器资源。
@@ -184,10 +184,11 @@ HttpOnly是在Set-Cookie时标记的。
 XSS Filter在用户提交数据时获取变量，并进行XSS检查；但此时用户数据并没有结合渲染页面的HTML代码，因此XSS Filter对语境的理解并不完整。
 例子。
 
-3. 输出检查
+###输出检查
 一般来说，除了富文本的输出外，在变量输出到HTML页面时，可以使用编码或转义的方式来防御XSS攻击。
 
 - 安全的编码函数
+
 编码分很多种，针对HTML代码的编码方式是HtmlEncode。它的作用是将将字符转换成HTMLEntities。
 在php中，有htmlentities()和htmlspecialchars()两个函数可以满足安全需求。
 相应的，javascript的编码方式可以使用JavascriptEncode。
@@ -196,10 +197,11 @@ JavascriptEncode与HtmlEncode 的编码方法不同，它需要使用“\”对�
 例子。
 
 除了HtmlEncode、JavascriptEncode外，还有许多用于各种情况的编码函数，比如XMLEncode，JSONEncode。
+
 - 只需要一种编码吗
 
 
-4. 正确的防御XSS
+###正确的防御XSS
 为了更好的设计XSS防御方案，需要认清XSS产生的本质原因。
 XSS的本质还是一种“HTML注入”，用户的数据被当成HTML代码一部分来执行，从而混淆了原本的语义，产生了新的语义。
 想要根治XSS问题，可以列出所有XSS可能发生的场景，再一一解决。
@@ -208,12 +210,14 @@ XSS的本质还是一种“HTML注入”，用户的数据被当成HTML代码一
 - 在script标签中输出，防御方法是JavascriptEncode。
 - 在事件中输出，防御方法是JavascriptEncode。
 - 在CSS中输出
+
 在CSS和style、style attribute中形成XSS的方式非常多样化。
 例子。
 所以一般来说，尽可能禁止用户可控制的变量在“<style>标签”、“HTML标签的style属性”以及“CSS文件”中输出。
 如果一定有这样的需求，则推荐使用OWASP ESAPI中的encodeFroCSS()函数。
 其实现原理是，除了字母、数字外的所有字符都被编码成十六进制形式“\uHH”。
 - 在地址中输出
+
 在地址中输出也比较复杂，一般来说在URL的path（路径）或search（参数）中输出，使用URLEncode即可。
 URLEncoede会将字符转换成“%HH“形式，比如空格“%20”，“<”是“%3c”。
 但是还有一种情况，就是整个URL能够被用户完全控制。
@@ -222,7 +226,7 @@ URLEncoede会将字符转换成“%HH“形式，比如空格“%20”，“<”
 一般来说，如果变量是整个URL，则应该先检查变量是否以“http”开头，如果不是则自动添加，以保证不会出现伪协议类的XSS攻击。
 在此以后，再对变量进行URLEncode，即可保证不会有类似的XSS发生了。
 
-5. 处理富文本
+###处理富文本
 
 有些时候，网站需要允许用户提交一些自定义的HTML代码，称之为“富文本”。
 过滤富文本时，“事件”应该被严格禁止，因为“富文本”的展示需求里不应该包括“事件”这种动态效果。
@@ -234,7 +238,7 @@ URLEncoede会将字符转换成“%HH“形式，比如空格“%20”，“<”
 如果一定要允许用户自定义样式，则只能像过滤“富文本”一样过滤“CSS”。
 这还需要一个CSS Parser对样式进行只能分析，检查其中是否包含危险代码。
 
-6. 防御DOM Based XSS
+###防御DOM Based XSS
 DOM Based XSS是一种比较特殊的XSS漏洞，前文提到的几种防御方法都不太适用，需要特别对待。
 
 正确防御方法是，首先，在“$var”输出到script标签中时，应该执行一次javascriptEncode；
@@ -249,7 +253,8 @@ DOM Based XSS是一种比较特殊的XSS漏洞，前文提到的几种防御方�
 除了服务器端直接输出变量到javascript，还有以下几个地方可能会成为DOM Based XSS的输入点，也需要重点关注。
 例子。
 
-7. 换个角度看XSS的风险
+###换个角度看XSS的风险
 前文谈到的所有XSS攻击，都是从漏洞形成的原理上看的。如果从业务风险的角度来看，则会有不同的观点。
-在修补XSS漏洞时遇到的最大挑战之一是漏洞数量太多，因此开发者来可能来不及，也不愿意修补这些漏洞。从业务风险的角度来重新定位每个XSS漏洞，就具有了重要的意义。
+在修补XSS漏洞时遇到的最大挑战之一是漏洞数量太多，因此开发者来可能来不及，也不愿意修补这些漏洞。
+从业务风险的角度来重新定位每个XSS漏洞，就具有了重要的意义。
 
