@@ -210,14 +210,12 @@ XSS的本质还是一种“HTML注入”，用户的数据被当成HTML代码一
 - 在script标签中输出，防御方法是JavascriptEncode。
 - 在事件中输出，防御方法是JavascriptEncode。
 - 在CSS中输出
-
 在CSS和style、style attribute中形成XSS的方式非常多样化。
 例子。
 所以一般来说，尽可能禁止用户可控制的变量在“<style>标签”、“HTML标签的style属性”以及“CSS文件”中输出。
 如果一定有这样的需求，则推荐使用OWASP ESAPI中的encodeFroCSS()函数。
 其实现原理是，除了字母、数字外的所有字符都被编码成十六进制形式“\uHH”。
 - 在地址中输出
-
 在地址中输出也比较复杂，一般来说在URL的path（路径）或search（参数）中输出，使用URLEncode即可。
 URLEncoede会将字符转换成“%HH“形式，比如空格“%20”，“<”是“%3c”。
 但是还有一种情况，就是整个URL能够被用户完全控制。
@@ -227,7 +225,6 @@ URLEncoede会将字符转换成“%HH“形式，比如空格“%20”，“<”
 在此以后，再对变量进行URLEncode，即可保证不会有类似的XSS发生了。
 
 ###处理富文本
-
 有些时候，网站需要允许用户提交一些自定义的HTML代码，称之为“富文本”。
 过滤富文本时，“事件”应该被严格禁止，因为“富文本”的展示需求里不应该包括“事件”这种动态效果。
 而一些危险的标签，比如iframe、script、base、form等，也应该严格禁止。
