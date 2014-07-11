@@ -219,6 +219,7 @@ while($html =~ /<div class="litpic"\><a href[^\>]*?\><img src="(.*?)"[^\>]*?\>.*
 }
 =cut
 
+=pod
 my $str1 = '油';
 my $str2 = '视图';
 
@@ -229,4 +230,69 @@ print '<br/>', $str1, ' =~ 油', "\n";
 if($str2 =~ /油/){
 print '<br/>', $str2, ' =~ 油', "\n";  
 }
+=cut
 
+#前非{|{\s*|:| :   后非}|\s*}|\s*,|:| :
+my $str1 = qq`{"title": "\\u534e\\u901a\\u8d77\\u4e9a"\\u62d2 "\\u98ce\\u884c\\u52a8 \\u95ed\\u9986\\u56e2\\u8d2d\\u4f1a"`;
+=pod
+my $str1 = qq`"title": ""\\u534e\\u901a\\u8d77\\u4e9a\\u62d2 \\u98ce\\u884c\\u52a8 \\u95ed\\u9986\\u56e2\\u8d2d\\u4f1a"`;
+my $str1 = qq`"title": "\\u534e\\u901a\\u8d77\\u4e9a\\u62d2 \\u98ce\\u884c\\u52a8 \\u95ed\\u9986\\u56e2\\u8d2d\\u4f1a""`;
+
+my $str1 = qq`
+{
+    "HDid": "0",
+    "vid": "-",
+    "did": "3297",
+    "cdate": "2012-12-25 17:43:30",
+    "img": "http://i2.sinaimg.cn/qc/photo_auto/photo/41/82/22254182/22254182_640.jpg",
+    "i_count": "0",
+    "href": "http://um.auto.sina.com.cn/news/2012-12-25/17433297.shtml",
+    "shurl": "http://um.auto.sina.com.cn/news/2012-12-25/17433297.shtml",
+    "title": "McLaren MP4-12C\\u8d70\\u7684\\u662f"London Style ""
+},
+`;
+=cut
+
+#$str1 = 'Windows 2000';
+#$str1 = 'Windows 3.1';
+#$str1 = '2000 Windows';
+#$str1 = '3.1Windows';
+
+#$str1 = "2: 5abc8";
+#$str1 =~ /(?=: [0-9])abc/; 
+#print "\n?=", $&;
+
+#$str1 =~ /(?!: [0-9]:)abc/; 
+#print "\n?!", $&;
+
+#$str1 = 'ddd{"xxx"abcsdddd';
+#$str1 = 'dbbbbccccaa:"aaayyyyydd{"xxx"abcsdddd';
+#$str1 = 'dbbb" :bcc" ,ccaa:"aaay" }yyyydd{"xxx"abcsdddd';
+#$str1 = 'ddd"}xxx"xabcsdddd';
+#$str1 = 'aaaa{"bbbbb{ "cccc:"ddddd :"eeeee"}fffff" }gggg",hhhhh" ,iiii":jjjj" :kkk"llll "mmmmnnnn';
+
+print "\n", $str1;
+
+#$str1 =~ s/(?!\s|:)"/\\"/g;
+#$str1 =~ s/(?!" ?: ?)"/$1\\"/g;
+#$str1 =~ /(?!": )"/;
+#$str1 =~ /(?=": | )"/;
+#print "\n?=", $&;
+#$str1 =~ /(?!": )"/;
+#print "\n?!", $&;
+#print "\n", $1;
+#$str1 =~ s/(?!abcs)d//g;
+#$str1 =~ s/Windows (?!95|98|NT|2000)//g;
+#$str1 =~ s/(?!95|98|NT|2000) ?Windows//g;
+#$str1 =~ s/((?=" ?: ?").*?)"(.*?(?="\s+?[\},]))/$1\\"$2/g;
+#$str1 =~ /(?!{|" ?: ?")"\S/;
+#$str1 =~ /(?!{| :|:)"\S/;
+#print "\n", $1;
+#
+#前非{|{\s*|:| :   后非}|\s*}|\s*,|:| :
+#$str1 =~ /\s*[^\{:]\s*"./;#ok
+#$str1 =~ /\s*[^\s\{:]\s*"\s*[^\s\},:]./;#ok
+$str1 =~ s/(\s*[^\s\{:]\s*)"(\s*[^\s\},:])/$1\\"$2/g;
+print "\npattern = ", $&;
+
+print "\n", $str1;
