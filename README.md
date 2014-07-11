@@ -56,7 +56,7 @@ Please don't use any `<blink>` tags.
  
 ---
 
-##backlash : 
+##backslash : 
 
 \\   反斜线
 
