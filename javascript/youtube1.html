@@ -27,8 +27,11 @@
     </div>
     <script type="text/javascript">
         var user = 'yoshihiro1127';
+        var keyword = '世にも奇妙な物語';
         user = '5KleinBoysene4';
-        get_videos_by_username('user='+ user +'&q=世にも奇妙な物語&page=1&max-results=40');
+        //user = '火力全开大胃王';
+        //keyword = '元祖';
+        get_videos_by_username('user='+ user +'&q='+ keyword +'&page=1&max-results=40');
         $('#orderit').click(function(){
             var data = [];
             $('#video_list > dd').each(function(){
