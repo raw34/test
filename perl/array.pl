@@ -41,3 +41,7 @@ my @d = get_array_from_fun();
 my $len = 6;
 my @arr = (1..$len);
 print scalar(@arr);
+
+#test for splice
+splice(@arr, 1, 0, 2);
+print "\ntest for splice\n", Dumper(@arr);
