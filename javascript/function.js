@@ -162,3 +162,18 @@ function getPage(total, pageSize, page, show, columns, fun, prefix){
     this.pos = this.getPos();
     this.html = this.getHTML();
 }
+
+function number_format(num) {
+    var str_input = num.toString();
+    var str_output = '';
+    var j = 0;
+    for (var len = str_input.length, i = len - 1; i >= 0; i--) {
+        //console.log(i + '===' + str_input[i]);
+        if (j % 3 == 0 && i != len - 1) {
+            str_output = ',' + str_output;
+        }
+        str_output = str_input[i] + str_output;
+        j++;
+    }
+    return str_output;
+}
