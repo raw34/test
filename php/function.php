@@ -29,9 +29,11 @@ function josephus2($n, $m) {
     return $s + 1;
 }
 
+/*
 echo josephus1(10, 7);
 echo '<br/>';
 echo josephus2(10, 7);
+ */
 
 //冒泡排序法
 function bubble_sort($a) {
@@ -52,6 +54,7 @@ function bubble_sort($a) {
     return $a;
 }
 
+/*
 $a = range(1, 10);
 shuffle($a);
 echo '<pre>'; var_dump($a); echo '</pre>';
@@ -60,3 +63,24 @@ echo '<pre>'; var_dump($a); echo '</pre>';
 
 
 echo 'hostname = ', gethostname();
+ */
+
+function binarySearch($arr, $start, $end, $value) {
+    $mid = floor(($end + $start) / 2);
+    echo "\nstart = ", $start, " end = ", $end, " mid = ", $mid, " value = ", $value;
+    if ($arr[$mid] == $value) {
+        return $mid;
+    } elseif ($arr[$mid] > $value) {
+        echo "\narr[mid] = {$arr[$mid]} > value = 7";
+        binarySearch($arr, $start, $mid, $value);
+    } else {
+        echo "\narr[mid] = {$arr[$mid]} < value = 7";
+        binarySearch($arr, $mid, $end, $value);
+    }
+}
+
+$arr = range(1, 10);
+shuffle($arr);
+print_r($arr);
+$index = binarySearch($arr, 0, 9, 7);
+echo "\nindex = ", $index;
