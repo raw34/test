@@ -66,21 +66,27 @@ echo 'hostname = ', gethostname();
  */
 
 function binarySearch($arr, $start, $end, $value) {
-    $mid = floor(($end + $start) / 2);
-    echo "\nstart = ", $start, " end = ", $end, " mid = ", $mid, " value = ", $value;
-    if ($arr[$mid] == $value) {
-        return $mid;
-    } elseif ($arr[$mid] > $value) {
-        echo "\narr[mid] = {$arr[$mid]} > value = 7";
-        binarySearch($arr, $start, $mid, $value);
+    //$mid = $start + floor(($end - $start) / 2);
+    $mid = floor(($start + $end) / 2);
+    echo "\nstart = ", $start, " end = ", $end, " mid = ", $mid, " value = ", $value, " arr[mid] = ", $arr[$mid];
+    sleep(1);
+    if ($start > $end) {
+        return -1;
     } else {
-        echo "\narr[mid] = {$arr[$mid]} < value = 7";
-        binarySearch($arr, $mid, $end, $value);
+        if ($arr[$mid] == $value) {
+            return $mid;
+        } elseif ($arr[$mid] > $value) {
+            //echo "\narr[mid] = {$arr[$mid]} > value = 7";
+            return binarySearch($arr, $start, $mid - 1, $value);
+        } else {
+            //echo "\narr[mid] = {$arr[$mid]} < value = 7";
+            return binarySearch($arr, $mid, $end, $value);
+        }
     }
 }
 
 $arr = range(1, 10);
-shuffle($arr);
+//shuffle($arr);
 print_r($arr);
-$index = binarySearch($arr, 0, 9, 7);
+$index = binarySearch($arr, 0, 9, 1);
 echo "\nindex = ", $index;
