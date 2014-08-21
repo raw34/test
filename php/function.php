@@ -66,8 +66,8 @@ echo 'hostname = ', gethostname();
  */
 
 function binarySearch($arr, $start, $end, $value) {
-    //$mid = $start + floor(($end - $start) / 2);
-    $mid = floor(($start + $end) / 2);
+    $mid = $start + floor(($end - $start) / 2);
+    //$mid = floor(($start + $end) / 2);
     echo "\nstart = ", $start, " end = ", $end, " mid = ", $mid, " value = ", $value, " arr[mid] = ", $arr[$mid];
     sleep(1);
     if ($start > $end) {
