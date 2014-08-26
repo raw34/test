@@ -58,8 +58,10 @@ function bubble_sort($a) {
 $a = range(1, 10);
 shuffle($a);
 echo '<pre>'; var_dump($a); echo '</pre>';
+echo "\n", implode(' ', $a);
 $a = bubble_sort($a);
 echo '<pre>'; var_dump($a); echo '</pre>';
+echo "\n", implode(' ', $a);
 
 
 echo 'hostname = ', gethostname();
@@ -85,8 +87,41 @@ function binarySearch($arr, $start, $end, $value) {
     }
 }
 
+/*
 $arr = range(1, 10);
 //shuffle($arr);
 print_r($arr);
 $index = binarySearch($arr, 0, 9, 1);
 echo "\nindex = ", $index;
+ */
+
+function merge_sort($a) {
+    $size = count($a);
+    if ($size > 1) {
+        $mid = intval($size >> 1);
+        $left = merge_sort(array_slice($a, 0, $mid));
+        $right = merge_sort(array_slice($a, $mid, $size));
+        //echo "\nl = ", implode(' ', $left);
+        //echo "\nr =", implode(' ', $right);
+        $i = $j = 0;
+        for ($k = 0; $k < $size; $k++) {
+            //echo "\nk = $k, i = $i, j = $j";
+            if (isset($left[$i]) || isset($right[$j])) {
+                if (!isset($right[$j]) || isset($left[$i]) && $left[$i] <= $right[$j]) {
+                    $a[$k] = $left[$i];
+                    $i++;
+                } else {
+                    $a[$k] = $right[$j];
+                    $j++;
+                }
+            }
+        }
+    }
+    return $a;
+}
+
+$a = range(1, 10);
+shuffle($a);
+echo "\n", implode(' ', $a);
+$a = merge_sort($a);
+echo "\n", implode(' ', $a);
