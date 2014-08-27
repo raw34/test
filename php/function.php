@@ -120,8 +120,28 @@ function merge_sort($a) {
     return $a;
 }
 
+/*
 $a = range(1, 10);
 shuffle($a);
 echo "\n", implode(' ', $a);
 $a = merge_sort($a);
 echo "\n", implode(' ', $a);
+ */
+
+function str2num($input) {
+    $output = 0;
+    $input = strrev($input);
+    $arr = explode('', $input);
+    $i = 0;
+    foreach ($arr as $v) {
+        $n = 1;
+        $j = $i;
+        while ($j > 0) {
+            $n *= 10;
+        }
+        $output += $v * $n;
+    }
+    return $output;
+}
+
+echo str2num('2355');

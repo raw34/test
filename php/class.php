@@ -4,7 +4,8 @@
  */
 class Test
 {
-    static protected $car = 20;
+    public static $num = 10;
+    protected static $car = 20;
     protected $id = 2;
     //public $car;
     private $item;
@@ -14,6 +15,7 @@ class Test
     public function __construct()
     {
         $this->item = 10;
+        self::$num = 50;
         //$this->car = 20;
     }
 }
@@ -31,9 +33,13 @@ class Test1 extends Test
     {
         //$this->car = 30;
         self::$car = 30;
-        echo 'this->car = ', self::$car, ' parent->car = ', parent::$car;
-        echo '<br/>id = ', $this->id;
+        echo "\nthis->car = ", self::$car;
+        echo "\nparent->car = ", parent::$car;
+        echo "\nid = ", $this->id;
     }
 }
 
+echo "\n", Test::$num;
+$obj = new Test();
+echo "\n", Test::$num;
 new Test1();
