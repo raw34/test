@@ -16,4 +16,3 @@ if ($_REQUEST['var'] == null) {
 } else {
     echo 'notnull<br/>';
 }
-?>
