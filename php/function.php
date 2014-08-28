@@ -131,17 +131,20 @@ echo "\n", implode(' ', $a);
 function str2num($input) {
     $output = 0;
     $input = strrev($input);
-    $arr = explode('', $input);
+    $arr = str_split($input);
     $i = 0;
     foreach ($arr as $v) {
         $n = 1;
         $j = $i;
         while ($j > 0) {
             $n *= 10;
+            $j--;
         }
         $output += $v * $n;
+        $i++;
     }
     return $output;
 }
 
-echo str2num('2355');
+$num = str2num('2356');
+echo "type = ", gettype($num), ' and the num = ', $num;
