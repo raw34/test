@@ -12,11 +12,43 @@ class Test
     /**
      * 
      */
+
+
+    private $_optionsMail = array(
+        'exchangeName' => 'exchange_mail',
+        'routingKey' => 'routing_mail',
+        'queueName' => 'queue_mail',
+    );
+
+    private $_optionsSMS = array(
+        'exchangeName' => 'exchange_short_message',
+        'routingKey' => 'routing_short_message',
+        'queueName' => 'queue_short_message',
+    );
+
     public function __construct()
     {
         $this->item = 10;
         self::$num = 50;
         //$this->car = 20;
+    }
+
+    public function mailCallback()
+    {
+        return 'mail';
+    }
+
+    public function smsCallback()
+    {
+        return 'sms';
+    }
+
+    public function test($type)
+    {
+        echo 'callback = ', $this->{$type . 'Callback'}();
+        $type = ucfirst($type);
+        echo 'queue = ', $this->{'_options' . $type}['queueName'];
+
     }
 }
 //$obj = new Test();
@@ -39,7 +71,12 @@ class Test1 extends Test
     }
 }
 
+/*
 echo "\n", Test::$num;
 $obj = new Test();
 echo "\n", Test::$num;
 new Test1();
+ */
+
+$obj = new Test();
+$obj->test('mail');
