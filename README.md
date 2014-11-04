@@ -52,6 +52,22 @@ A backtick-delimited string in a code span: `` `foo` ``
 
 Please don't use any `<blink>` tags.
 
+##code3 :
+```
+server {
+    listen       80;
+    server_name  laravel.test.local;
+    root         /Users/randy/wwwroot/repo/laravel-test/public;
+
+    location / {
+        index  index.html index.htm index.php;
+        autoindex   on;
+        include     /usr/local/etc/nginx/conf.d/php-fpm;
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+}
+```
+
 ##line :
  
 ---
