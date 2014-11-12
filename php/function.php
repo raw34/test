@@ -147,4 +147,28 @@ function str2num($input) {
 }
 
 $num = str2num('2356');
-echo "type = ", gettype($num), ' and the num = ', $num;
+//echo "type = ", gettype($num), ' and the num = ', $num;
+
+
+function khash($data) {
+    //static $map="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static $map="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $hash=crc32($data)+0x100000000;
+    echo "hash = $hash\n";
+    echo 31+ ($hash % 31), "\n";
+    $str = "";
+    do {
+        $str = $map[31+ ($hash % 31)] . $str;
+        $hash /= 31;
+    } while($hash >= 1);
+    return $str;
+}
+
+//$test= array(null);
+$test= array(null,TRUE,FALSE,0,"0",1,"1","2","3","ab","abc","abcd","abcde","abcdefoo");
+$out = array();
+foreach($test as $s)
+{
+    $out[]=khash($s).": ". $s;
+}
+var_dump($out);
