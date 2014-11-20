@@ -4,6 +4,8 @@ for test
 
 test for fork
 
+test for merge
+
 ##link1 :
 
  [github](https://github.com "github")
