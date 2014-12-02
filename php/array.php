@@ -23,3 +23,12 @@ $arr1 = array(1, 3);
 $arr2 = array(2, 4);
 $arr3 = $arr1 + $arr2;
 print_r($arr3);
+
+
+//对象转数组
+$obj = new stdclass();
+$obj->name = 'aa';
+$obj->age = 20;
+
+$arr = (array) $obj;
+echo '<pre>'; var_dump($arr); echo '</pre>'; die();
