@@ -34,6 +34,73 @@ test for merge
 
 *斜体1* **加粗1**
 
+##lines :
+* * *
+
+***
+
+*****
+
+- - -
+
+---------------------------------------
+
+---
+
+##backslash : 
+
+\\   反斜线
+
+\`   反引号
+
+\*   星号
+
+\_   底线
+
+\{\}  花括号
+
+\[\]  方括号
+
+\(\)  括弧
+
+\#   井字号
+
+\+   加号
+
+\-   减号
+
+\.   英文句点
+
+\!   惊叹号
+
+##list1 :
+-   Red
+-   Green
+-   Blue
+-   In this case, we need two space at the end of the line.  
+    aaaaaaaaa  
+    bbbbbbb  
+    cccccccccccc 
+
+##list2 :
+1.  Bird
+3.  McHale
+2.  Parish
+4.  This is a list item with two paragraphs. Lorem ipsum dolor  
+    sit amet, consectetuer adipiscing elit. Aliquam hendrerit  
+    mi posuere lectus.  
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet  
+    vitae, risus. Donec sit amet nisl. Aliquam semper ipsumko  
+    sit amet velit.  
+
+##quote :
+> Block quotes are
+> written like so.
+>
+> They can span multiple paragraphs,
+> if you like.
+
 ##code1 : 
 
 	//php
@@ -70,35 +137,19 @@ server {
 }
 ```
 
-##line :
- 
----
+##table1 : 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
-##backslash : 
-
-\\   反斜线
-
-\`   反引号
-
-\*   星号
-
-\_   底线
-
-\{\}  花括号
-
-\[\]  方括号
-
-\(\)  括弧
-
-\#   井字号
-
-\+   加号
-
-\-   减号
-
-\.   英文句点
-
-\!   惊叹号
+##table2 : 
+dog | bird | cat
+----|------|----
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
 
 
 [1]: https://youtube.com "youtube"
