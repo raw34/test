@@ -77,7 +77,7 @@ test for merge
 -   Red
 -   Green
 -   Blue
--   In this case, we need two space at the end of the line.  
+-   In this case, we need two spaces at the end of the line.  
     aaaaaaaaa  
     bbbbbbb  
     cccccccccccc 
@@ -154,3 +154,4 @@ baz | baz  | baz
 
 [1]: https://youtube.com "youtube"
 [2]: http://ww4.sinaimg.cn/thumb150/63bfef8cjw1eh6g9i632yj203k02omwz.jpg "i2"
+-   In this case, we need two space at the end of the line.  
