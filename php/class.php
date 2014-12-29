@@ -78,5 +78,70 @@ echo "\n", Test::$num;
 new Test1();
  */
 
+/*
 $obj = new Test();
 $obj->test('mail');
+ */
+
+/**
+ * 
+ */
+class BaseModel
+{
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        
+    }
+
+    public function add()
+    {
+        echo "add in base\n";
+        echo get_class($this), "->", __method__, "\n";
+
+        BackendLog::add();
+    }
+}
+
+/**
+ * 
+ */
+class UserModel extends BaseModel
+{
+    
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        
+    }
+
+}
+
+/**
+ * 
+ */
+class BackendLog
+{
+    
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        
+    }
+
+    public static function add()
+    {
+        echo "add in log\n";
+    }
+}
+
+
+$user = new UserModel();
+$user->add();
+
