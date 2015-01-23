@@ -142,6 +142,29 @@ class BackendLog
 }
 
 
-$user = new UserModel();
-$user->add();
+//$user = new UserModel();
+//$user->add();
 
+
+class A {
+    public static function who() {
+        new static;
+        echo __CLASS__;
+    }
+    public static function test() {
+        self::who();
+    }
+}
+
+class B extends A {
+    public static function who() {
+        echo __CLASS__;
+    }
+/*
+    public static function test() {
+        echo '111';
+    }
+ */
+}
+
+B::test();
