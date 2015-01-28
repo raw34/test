@@ -1,3 +1,6 @@
  .DS_Store
 *.swp
 *.class
+php/*
+cscope.*
+ncscope.*
