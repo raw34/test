@@ -1,7 +1,10 @@
  .DS_Store
 *.swp
 *.class
-*tags
-*cscope.*
-*ncscope.*
-
+tags
+cscope.*
+ncscope.*
+php/*
+cscope.*
+ncscope.*
+index.html
