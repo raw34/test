@@ -24,12 +24,18 @@ declare -A dict=([a]="123" [b]="1234" )
 echo ${dict[b]}
 
 declare -A dict1
-dict1[a]='x=a y=b z=c'
+dict1[a]='
+    x=1
+    y=2
+    z=3
+'
+# dict1[b]='x=4 y=5 z=6'
 
 # echo ${dict1[a]}
 
-arr2=dict1[a]
-
-for key in ${arr2[@]} ; do
-    echo $key
+for tmp in ${dict1[@]} ; do
+    for k in ${tmp[@]} ; do
+        list=(${k//=/ })
+        echo ${list[1]} 
+    done
 done
