@@ -39,3 +39,14 @@ for tmp in ${dict1[@]} ; do
         echo ${list[1]} 
     done
 done
+
+
+arr3=(
+"c1"
+"c2"
+"c3"
+"c4"
+)
+
+echo ${arr3[0]}
+
