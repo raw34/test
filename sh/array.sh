@@ -22,3 +22,14 @@ echo ${phone[jim]}
 declare -A dict=([a]="123" [b]="1234" )
 
 echo ${dict[b]}
+
+declare -A dict1
+dict1[a]='x=a y=b z=c'
+
+# echo ${dict1[a]}
+
+arr2=dict1[a]
+
+for key in ${arr2[@]} ; do
+    echo $key
+done
