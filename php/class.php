@@ -167,4 +167,4 @@ class B extends A {
  */
 }
 
-B::test();
+// B::test();

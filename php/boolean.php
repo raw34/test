@@ -1,22 +1,28 @@
 <?php 
-echo '<pre>'; var_dump($argv); echo '</pre>';
+echo "<pre>"; var_dump($argv); echo "</pre>";
 //echo $argv[0]; 
 
 
 $a1 = null; 
 $a2 = false; 
 $a3 = 0; 
-$a4 = ''; 
-$a5 = '0'; 
-$a6 = 'null'; 
+$a4 = ""; 
+$a5 = "0"; 
+$a6 = "null"; 
 $a7 = array(); 
 $a8 = array(array()); 
-echo empty($a1) ?"true":"false"; 
-echo empty($a2) ?"true":"false"; 
-echo empty($a3) ?"true":"false"; 
-echo empty($a4) ?"true":"false"; 
-echo empty($a5) ?"true":"false"; 
-echo empty($a6) ?"true":"false"; 
-echo empty($a7) ?"true":"false"; 
-echo empty($a8) ?"true":"false"; 
-echo isset($a1)   ?"true":"false"; 
+
+echo empty($a1) ? "true\n" : "false\n"; 
+echo empty($a2) ? "true\n" : "false\n"; 
+echo empty($a3) ? "true\n" : "false\n"; 
+echo empty($a4) ? "true\n" : "false\n"; 
+echo empty($a5) ? "true\n" : "false\n"; 
+echo empty($a6) ? "true\n" : "false\n"; 
+echo empty($a7) ? "true\n" : "false\n"; 
+echo empty($a8) ? "true\n" : "false\n"; 
+echo isset($a1) ? "true\n" : "false\n"; 
+
+
+if ($a1 === $a3) {
+    echo 0, "= null";
+}
