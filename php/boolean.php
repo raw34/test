@@ -26,3 +26,22 @@ echo isset($a1) ? "true\n" : "false\n";
 if ($a1 === $a3) {
     echo 0, "= null";
 }
+
+$data_trade = [
+    'status' => null,
+];
+if (isset($data_trade['status'])) {
+    echo 1;
+} else {
+    echo 0;
+}
+die();
+
+$trade_status = null;
+if (isset($this->tradeStatus[$trade_status])) {
+    echo 1;
+} else {
+    echo 0;
+}
+die();
+
