@@ -23,6 +23,8 @@ $public_key_res = openssl_get_publickey($public_key);
 // openssl_sign($data, $signature, $private_key_res, "sha1WithRSAEncryption");
 openssl_sign($data, $signature, $private_key_res);
 
+openssl_free_key($private_key_res);
+
 //verify signature
 // $ok = openssl_verify($data, $signature, $public_key_res, OPENSSL_ALGO_SHA1);
 $ok = openssl_verify($data, $signature, $public_key_res);
