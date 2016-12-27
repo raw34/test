@@ -50,6 +50,12 @@ class Test
         echo 'queue = ', $this->{'_options' . $type}['queueName'];
 
     }
+
+    public static function callStatic()
+    {
+        echo self::$num, "\n";
+        echo self::$id, "\n";
+    }
 }
 //$obj = new Test();
 //echo '<pre>'; var_dump($obj); echo '</pre>';
@@ -71,12 +77,16 @@ class Test1 extends Test
     }
 }
 
-/*
-echo "\n", Test::$num;
+
+echo "\n";
+echo Test::$num;
 $obj = new Test();
-echo "\n", Test::$num;
+echo "\n";
+echo Test::$num;
 new Test1();
- */
+echo "\n";
+Test::callStatic();
+echo "\n";
 
 /*
 $obj = new Test();
