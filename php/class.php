@@ -54,7 +54,7 @@ class Test
     public static function callStatic()
     {
         echo self::$num, "\n";
-        echo self::$id, "\n";
+        // echo self::$id, "\n";
     }
 }
 //$obj = new Test();
@@ -78,6 +78,7 @@ class Test1 extends Test
 }
 
 
+/*
 echo "\n";
 echo Test::$num;
 $obj = new Test();
@@ -87,6 +88,7 @@ new Test1();
 echo "\n";
 Test::callStatic();
 echo "\n";
+ */
 
 /*
 $obj = new Test();
@@ -178,3 +180,29 @@ class B extends A {
 }
 
 // B::test();
+
+class TestConfig
+{
+    public $config = [
+    ];
+
+    public function __construct()
+    {
+        $this->config = [
+            'a' => 1,
+            'b' => 2,
+        ];
+    }
+}
+
+class Test2
+{
+
+    public static function testCallVariable()
+    {
+        $config = new TestConfig();
+        echo '<pre>'; var_dump($config->config); echo '</pre>'; die();
+    }
+}
+
+// Test2::testCallVariable();
