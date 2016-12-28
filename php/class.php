@@ -197,11 +197,16 @@ class TestConfig
 
 class Test2
 {
+    public static function getConfig()
+    {
+        $config = new TestConfig();
+
+        return $config;
+    }
 
     public static function testCallVariable()
     {
-        $config = new TestConfig();
-        echo '<pre>'; var_dump($config->config); echo '</pre>'; die();
+        echo '<pre>'; var_dump(self::getConfig()->config); echo '</pre>'; die();
     }
 }
 
