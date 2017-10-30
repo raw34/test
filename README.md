@@ -1,4 +1,4 @@
-#test
+# test
 
 
 for test
@@ -9,35 +9,35 @@ test for merge
 
 test for ssh
 
-##link1 :
+## link1 :
 
  [github](https://github.com "github")
 
-##link2 :
+## link2 :
 
  [youtube][1]
 
-##link3 : 
+## link3 : 
 
 <http://google.com>
 
-##image1 :
+## image1 :
 
  ![img1](https://avatars1.githubusercontent.com/u/1996768?s=140 "i1")
 
-##image2 :
+## image2 :
 
  ![img2][2]
 
-##mail : 
+## mail : 
 
 <raw34@sina.com>
 
-##important : 
+## important : 
 
 *斜体1* **加粗1** ~~删除线~~
 
-##lines :
+## lines :
 * * *
 
 ***
@@ -50,7 +50,7 @@ test for ssh
 
 ---
 
-##backslash : 
+## backslash : 
 
 \\   反斜线
 
@@ -66,7 +66,7 @@ test for ssh
 
 \(\)  括弧
 
-\#   井字号
+\#    井字号
 
 \+   加号
 
@@ -76,7 +76,7 @@ test for ssh
 
 \!   惊叹号
 
-##list1 :
+## list1 :
 -   Red
 -   Green
 -   Blue
@@ -85,7 +85,7 @@ test for ssh
     bbbbbbb  
     cccccccccccc 
 
-##list2 :
+## list2 :
 1.  Bird
 3.  McHale
 2.  Parish
@@ -97,14 +97,14 @@ test for ssh
     vitae, risus. Donec sit amet nisl. Aliquam semper ipsumko  
     sit amet velit.  
 
-##quote :
+## quote :
 > Block quotes are
 > written like so.
 >
 > They can span multiple paragraphs,
 > if you like.
 
-##code1 : 
+## code1 : 
 
 	//php
 	$arr = array(1, 2, 3, 4);
@@ -114,7 +114,7 @@ test for ssh
 	//javascirpt
 	console.log(window.name);
 
-##code2 : 
+## code2 : 
 
 Use the `printf()` function.
 
@@ -124,7 +124,7 @@ A backtick-delimited string in a code span: `` `foo` ``
 
 Please don't use any `<blink>` tags.
 
-##code3 :
+## code3 :
 ```
 server {
     listen       80;
@@ -140,14 +140,14 @@ server {
 }
 ```
 
-##table1 : 
+## table1 : 
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
 
-##table2 : 
+## table2 : 
 dog | bird | cat
 ----|------|----
 foo | foo  | foo
