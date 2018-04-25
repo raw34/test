@@ -1,1 +1,1 @@
-(function(){var script=document.createElement("script");script.src="https://code.jquery.com/jquery-3.2.1.min.js";script.type="text/javascript";script.onload=function(){var $=window.jQuery};document.getElementsByTagName("head")[0].appendChild(script)})();
+(function(){var script=document.createElement("script");script.src="http://code.jquery.com/jquery-3.2.1.min.js";script.type="text/javascript";script.onload=function(){var $=window.jQuery};document.getElementsByTagName("head")[0].appendChild(script)})();
