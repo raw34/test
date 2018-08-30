@@ -1,4 +1,9 @@
 <?php 
+ini_set('display_errors', 0);
+
+error_reporting(E_ALL);
+
+
 /**
  * test
  */
@@ -211,3 +216,22 @@ class Test2
 }
 
 // Test2::testCallVariable();
+
+abstract class Test3
+{
+    public function A($x)
+    {
+    }
+    
+}
+
+class Test4 extends Test3
+{
+    public function A($x, $b)
+    {
+        echo 111;die();
+    }
+    
+}
+
+Test4::A(1, 2);
