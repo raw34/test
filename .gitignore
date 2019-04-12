@@ -1,5 +1,5 @@
  .DS_Store
-*.swp
+*.sw*
 *.class
 tags
 cscope.*
@@ -8,3 +8,4 @@ cscope.*
 ncscope.*
 index.html
 test/
+.idea/
