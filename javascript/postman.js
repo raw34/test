@@ -8,4 +8,5 @@ var myCollection;
 myCollection = new Collection(JSON.parse(fs.readFileSync('sample-collection.json').toString()));
 
 // log items at root level of the collection
-console.log(myCollection.toJSON()); 
+// console.log(myCollection.toJSON()); 
+console.log(myCollection.events);
