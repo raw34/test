@@ -9,3 +9,4 @@ ncscope.*
 index.html
 test/
 .idea/
+node_modules
