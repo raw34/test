@@ -10,9 +10,9 @@ echo ${arr[0]}
 
 declare -A phone
 phone=(
-[jim]="135"
-[tom]="136"
-[lucy]="158"
+  [jim]="135"
+  [tom]="136"
+  [lucy]="158"
 )
 
 echo ${phone[jim]}
