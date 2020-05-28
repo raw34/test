@@ -10,3 +10,4 @@ index.html
 test/
 .idea/
 node_modules
+*.out
