@@ -10,7 +10,7 @@ public class JsonTest {
 
     @Test
     public void case1Test(){
-        String str = "{\"0\":\"zhangsan\",\"1\":\"lisi\",\"2\":\"wangwu\",\"3\":\"maliu\"}";
+        String str = "{\"x\":\"zhangsan\",\"y\":\"lisi\",\"z\":\"wangwu\",\"a\":2, \"b\":[1, 2, 3], \"c\":{\"0\":\"a\", \"1\":\"b\"}}";
         //第一种方式
         Map maps = (Map)JSON.parse(str);
         System.out.println("这个是用JSON类来解析JSON字符串!!!");
@@ -21,7 +21,7 @@ public class JsonTest {
 
     @Test
     public void case2Test(){
-        String str = "{\"0\":\"zhangsan\",\"1\":\"lisi\",\"2\":\"wangwu\",\"3\":\"maliu\"}";
+        String str = "{\"x\":\"zhangsan\",\"y\":\"lisi\",\"z\":\"wangwu\",\"a\":2, \"b\":[1, 2, 3], \"c\":{\"0\":\"a\", \"1\":\"b\"}}";
         //第二种方式
         Map mapTypes = JSON.parseObject(str);
         System.out.println("这个是用JSON类的parseObject来解析JSON字符串!!!");
@@ -32,7 +32,7 @@ public class JsonTest {
 
     @Test
     public void case3Test(){
-        String str = "{\"0\":\"zhangsan\",\"1\":\"lisi\",\"2\":\"wangwu\",\"3\":\"maliu\"}";
+        String str = "{\"x\":\"zhangsan\",\"y\":\"lisi\",\"z\":\"wangwu\",\"a\":2, \"b\":[1, 2, 3], \"c\":{\"0\":\"a\", \"1\":\"b\"}}";
         //第三种方式
         Map mapType = JSON.parseObject(str,Map.class);
         System.out.println("这个是用JSON类,指定解析类型，来解析JSON字符串!!!");
@@ -43,7 +43,7 @@ public class JsonTest {
 
     @Test
     public void case4Test(){
-        String str = "{\"0\":\"zhangsan\",\"1\":\"lisi\",\"2\":\"wangwu\",\"3\":\"maliu\"}";
+        String str = "{\"x\":\"zhangsan\",\"y\":\"lisi\",\"z\":\"wangwu\",\"a\":2, \"b\":[1, 2, 3], \"c\":{\"0\":\"a\", \"1\":\"b\"}}";
         //第四种方式
         /**
          * JSONObject是Map接口的一个实现类
@@ -57,6 +57,7 @@ public class JsonTest {
 
 //    @Test
 //    public void case5Test(){
+//        String str = "{\"x\":\"zhangsan\",\"y\":\"lisi\",\"z\":\"wangwu\",\"a\":2, \"b\":[1, 2, 3], \"c\":{\"0\":\"a\", \"1\":\"b\"}}";
 //        //第五种方式
 //        /**
 //         * JSONObject是Map接口的一个实现类
@@ -70,6 +71,7 @@ public class JsonTest {
 //
 //    @Test
 //    public void case6Test(){
+//        String str = "{\"x\":\"zhangsan\",\"y\":\"lisi\",\"z\":\"wangwu\",\"a\":2, \"b\":[1, 2, 3], \"c\":{\"0\":\"a\", \"1\":\"b\"}}";
 //        //第六种方式
 //        /**
 //         * JSONObject是Map接口的一个实现类
