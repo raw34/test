@@ -14,6 +14,7 @@ public class JsonTest {
         //第一种方式
         Map maps = (Map)JSON.parse(str);
         System.out.println("这个是用JSON类来解析JSON字符串!!!");
+        System.out.println("maps = " + maps + ", type = " + maps.getClass().getName());
         System.out.println("a = " + maps.get("a") + ", type = " + maps.get("a").getClass().getName());
         System.out.println("b = " + maps.get("b") + ", type = " + maps.get("b").getClass().getName());
         System.out.println("c = " + maps.get("c") + ", type = " + maps.get("c").getClass().getName());
