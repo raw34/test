@@ -1,14 +1,13 @@
- .DS_Store
+.DS_Store
 *.sw*
 *.class
 tags
 cscope.*
 ncscope.*
-cscope.*
-ncscope.*
 index.html
-test/
-.idea/
+.idea
 node_modules
 *.out
-.vscode/
+.vscode
+*.iml
+target
