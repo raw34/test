@@ -1,10 +1,15 @@
+package xyz.raw34.test;
+
+import org.junit.Test;
+
 import java.lang.String;
 import java.util.List;
 import java.util.ArrayList;
         
 public class ListTest
 {
-    public static void main(String args[])
+    @Test
+    public void case1Test()
     {
         List<String> list = new ArrayList<>();
         list.add("xxxx");
