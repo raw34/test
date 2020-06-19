@@ -16,7 +16,7 @@ public class UserServiceIml extends BaseService implements UserService{
     }
 
     @Override
-    public Long add(UserEntity entity) {
+    public UserEntity add(UserEntity entity) {
         return null;
     }
 

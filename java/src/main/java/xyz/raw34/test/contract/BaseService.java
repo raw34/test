@@ -7,7 +7,7 @@ public interface BaseService<T extends BaseEntity> {
 
     T mod(T entity);
 
-    Long add(T entity);
+    T add(T entity);
 
     boolean del(T entity);
 }
