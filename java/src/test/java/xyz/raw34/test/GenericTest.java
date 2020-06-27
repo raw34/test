@@ -20,5 +20,7 @@ public class GenericTest{
         logger.info("泛型测试" + " key is " + genericString.getKey());
         logger.info("泛型测试" + " key is " + genericFloat.getKey());
         logger.info("泛型测试" + " key is " + genericBoolean.getKey());
+
+        logger.info(GenericTest.class.getName());
     }
 }
