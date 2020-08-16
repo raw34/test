@@ -195,7 +195,6 @@ class SingleLinkedList implements LinkedList, AcyclicLinkedList
     }
 }
 
-
 /**
  * Class DoubleLinkedList
  * @author Randy Chang
@@ -215,12 +214,10 @@ class DoubleLinkedList extends SingleLinkedList
         $node->next = $next;
         $prev->next = $node;
 
-        if ($next !== null) {
-            $next->prev = $node;
-        }
-
         if ($pos === $this->length) {
             $this->tail = $node;
+        } else {
+            $next->prev = $node;
         }
 
         $this->length++;
@@ -233,12 +230,10 @@ class DoubleLinkedList extends SingleLinkedList
 
         $prev->next = $next;
 
-        if ($next !== null) {
-            $next->prev = $prev;
-        }
-
         if ($pos === $this->length) {
             $this->tail = $prev;
+        } else {
+            $next->prev = $prev;
         }
 
         $this->length--;
@@ -283,15 +278,11 @@ class CircularLinkedList
 {
 }
 
-$list = new SingleLinkedList();
-//$list = new DoubleLinkedList();
+//$list = new SingleLinkedList();
+$list = new DoubleLinkedList();
 
 $list->init([1, 3, 4, 2]);
 echo "init 1, 3, 4, 2\n";
-$list->display();
-
-$list->delete(3);
-echo "delete pos 3\n";
 $list->display();
 
 $list->insertBefore(20, 3);
@@ -300,6 +291,14 @@ $list->display();
 
 $list->insertAfter(32, 3);
 echo "insert 32 after pos 3\n";
+$list->display();
+
+$list->delete(3);
+echo "delete pos 3\n";
+$list->display();
+
+$list->update(30, 3);
+echo "update pos 3 to 30\n";
 $list->display();
 
 $list->unshift(21);
@@ -316,10 +315,6 @@ $list->display();
 
 $list->pop();
 echo "delete tail\n";
-$list->display();
-
-$list->update(30, 3);
-echo "update pos 3 to 30\n";
 $list->display();
 
 $list->reverse();
