@@ -31,6 +31,17 @@ class SingleLinkList
         $this->length = 0;
     }
 
+    public function init($arr)
+    {
+        $total = count($arr);
+
+        for ($i = 0; $i < $total; $i++) {
+            $this->insertAfter($arr[$i], $i);
+        }
+
+        return true;
+    }
+
     public function get($pos)
     {
         $cur = $this->head;
@@ -42,7 +53,7 @@ class SingleLinkList
         return $cur;
     }
 
-    public function insert($item, $pos)
+    public function insertBefore($item, $pos)
     {
         $node = new Node($item);
 
@@ -53,15 +64,16 @@ class SingleLinkList
         $this->length++;
     }
 
-    public function insertHead($item)
+    public function insertAfter($item, $pos)
     {
-        $this->insert($item, 1);
-    }
+        $node = new Node($item);
 
-    public function insertTail($item)
-    {
-        $this->insert($item, $this->length + 1);
-	}
+        $prev = $this->get($pos);
+
+        $node->next = $prev->next;
+        $prev->next = $node;
+        $this->length++;
+    }
 
     public function delete($pos)
     {
@@ -71,14 +83,37 @@ class SingleLinkList
         $this->length--;
     }
 
-    public function deleteHead()
+    public function update($item, $pos)
+    {
+        $node = new Node($item);
+
+        $prev = $this->get($pos - 1);
+        $node->next = $prev->next->next;
+        $prev->next = $node;
+    }
+
+    public function unshift($item)
+    {
+        $this->insertBefore($item, 1);
+    }
+
+    public function shift()
     {
         $this->delete(1);
+    }
+
+    public function push($item)
+    {
+        $this->insertAfter($item, $this->length);
 	}
 
-    public function deleteTail()
+    public function pop()
     {
         $this->delete($this->length);
+	}
+
+    public function reverse()
+    {
 	}
 
     public function size()
@@ -107,35 +142,41 @@ class SingleLinkList
 }
 
 $sList = new SingleLinkList();
-$sList->insertTail(1);
-$sList->insertTail(3);
-$sList->insertTail(4);
-$sList->insertTail(2);
-echo "insert 1, 3, 4, 2\n";
+
+$sList->init([1, 3, 4, 2]);
+echo "init 1, 3, 4, 2\n";
 $sList->display();
 
 $sList->delete(3);
 echo "delete pos 3\n";
 $sList->display();
 
-$sList->insert(20, 3);
-echo "insert 20 to pos 3\n";
+$sList->insertBefore(20, 3);
+echo "insert 20 before pos 3\n";
 $sList->display();
 
-$sList->insertHead(21);
+$sList->insertAfter(32, 3);
+echo "insert 32 after pos 3\n";
+$sList->display();
+
+$sList->unshift(21);
 echo "insert 21 to head\n";
 $sList->display();
 
-$sList->insertTail(22);
+$sList->push(22);
 echo "insert 22 to tail\n";
 $sList->display();
 
-$sList->deleteHead();
+$sList->shift();
 echo "delete head\n";
 $sList->display();
 
-$sList->deleteTail();
+$sList->pop();
 echo "delete tail\n";
+$sList->display();
+
+$sList->update(30, 3);
+echo "update pos 3 to 30\n";
 $sList->display();
 
 
@@ -161,7 +202,12 @@ class DoubleLinkList
  */
 class CircularLinkedList
 {
-	public function __construct($options)
-	{
-	}
+    public $head;
+    public $length;
+
+    public function __construct()
+    {
+        $this->head= new Node(null);
+        $this->length = 0;
+    }
 }
