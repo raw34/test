@@ -35,11 +35,8 @@ class SingleLinkList
     {
         $cur = $this->head;
 
-        $i = 0;
-
-        while ($i < $pos) {
+        for ($i = 0; $i < $pos; $i++) {
             $cur = $cur->next;
-            $i++;
         }
 
         return $cur;
