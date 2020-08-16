@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Interface linklist
+ * Interface LinkedList
  * @author Randy Chang
  */
-interface LinkList
+interface LinkedList
 {
     public function init($arr = []);
 
@@ -26,10 +26,10 @@ interface LinkList
 }
 
 /**
- * Interface AcyclicLinkList
+ * Interface AcyclicLinkedList
  * @author Randy Chang
  */
-interface AcyclicLinkList
+interface AcyclicLinkedList
 {
     public function unshift($item);
 
@@ -57,10 +57,10 @@ class Node
 }
 
 /**
- * Class SingleLinkList
+ * Class SingleLinkedList
  * @author Randy Chang
  */
-class SingleLinkList implements LinkList, AcyclicLinkList
+class SingleLinkedList implements LinkedList, AcyclicLinkedList
 {
     public $head;
     public $length;
@@ -123,13 +123,13 @@ class SingleLinkList implements LinkList, AcyclicLinkList
 
     public function get($pos)
     {
-        $cur = $this->head;
+        $curr = $this->head;
 
         for ($i = 0; $i < $pos; $i++) {
-            $cur = $cur->next;
+            $curr = $curr->next;
         }
 
-        return $cur;
+        return $curr;
     }
 
     public function unshift($item)
@@ -152,6 +152,24 @@ class SingleLinkList implements LinkList, AcyclicLinkList
         $this->delete($this->length);
 	}
 
+    public function reverse()
+    {
+        $curr = $this->head;
+        $prev = null;
+
+        while ($curr) {
+            $next = $curr->next;
+            $curr->next = $prev;
+            $prev = $curr;
+            $curr = $next;
+        }
+
+        $headNew = new Node(null);
+        $headNew->next = $prev;
+
+        $this->head = $headNew;
+	}
+
     public function clear()
     {
         $this->head = null;
@@ -166,64 +184,23 @@ class SingleLinkList implements LinkList, AcyclicLinkList
 
     public function display()
     {
-        $cur = $this->head;
+        $curr = $this->head;
 
-        while ($cur->next) {
-            echo $cur->next->data, ' ';
-            $cur = $cur->next;
+        while ($curr->next) {
+            echo $curr->next->data, ' ';
+            $curr = $curr->next;
         }
 
         echo "\n";
     }
 }
 
-/*
-$sList = new SingleLinkList();
-
-$sList->init([1, 3, 4, 2]);
-echo "init 1, 3, 4, 2\n";
-$sList->display();
-
-$sList->delete(3);
-echo "delete pos 3\n";
-$sList->display();
-
-$sList->insertBefore(20, 3);
-echo "insert 20 before pos 3\n";
-$sList->display();
-
-$sList->insertAfter(32, 3);
-echo "insert 32 after pos 3\n";
-$sList->display();
-
-$sList->unshift(21);
-echo "insert 21 to head\n";
-$sList->display();
-
-$sList->push(22);
-echo "insert 22 to tail\n";
-$sList->display();
-
-$sList->shift();
-echo "delete head\n";
-$sList->display();
-
-$sList->pop();
-echo "delete tail\n";
-$sList->display();
-
-$sList->update(30, 3);
-echo "update pos 3 to 30\n";
-$sList->display();
-*/
-
-
 
 /**
- * Class DoubleLinkList
+ * Class DoubleLinkedList
  * @author Randy Chang
  */
-class DoubleLinkList extends SingleLinkList
+class DoubleLinkedList extends SingleLinkedList
 {
     public $tail;
 
@@ -286,60 +263,17 @@ class DoubleLinkList extends SingleLinkList
 
     public function displayReverse()
     {
-        $cur = $this->tail;
+        $curr = $this->tail;
 
-        echo $cur->data, ' ';
-
-        while ($cur->prev) {
-            echo $cur->prev->data, ' ';
-            $cur = $cur->prev;
+        while ($curr->prev) {
+            echo $curr->prev->data, ' ';
+            $curr = $curr->prev;
         }
 
         echo "\n";
     }
 }
 
-
-$dList = new DoubleLinkList();
-
-$dList->init([1, 3, 4, 2]);
-echo "init 1, 3, 4, 2\n";
-$dList->display();
-
-$dList->delete(3);
-echo "delete pos 3\n";
-$dList->display();
-
-$dList->insertBefore(20, 3);
-echo "insert 20 before pos 3\n";
-$dList->display();
-
-$dList->insertAfter(32, 3);
-echo "insert 32 after pos 3\n";
-$dList->display();
-
-$dList->unshift(21);
-echo "insert 21 to head\n";
-$dList->display();
-
-$dList->push(22);
-echo "insert 22 to tail\n";
-$dList->display();
-
-$dList->shift();
-echo "delete head\n";
-$dList->display();
-
-$dList->pop();
-echo "delete tail\n";
-$dList->display();
-
-$dList->update(30, 3);
-echo "update pos 3 to 30\n";
-$dList->display();
-
-echo "display reverse\n";
-$dList->displayReverse();
 
 /**
  * Class CircularLinkedList
@@ -348,3 +282,47 @@ $dList->displayReverse();
 class CircularLinkedList
 {
 }
+
+$list = new SingleLinkedList();
+//$list = new DoubleLinkedList();
+
+$list->init([1, 3, 4, 2]);
+echo "init 1, 3, 4, 2\n";
+$list->display();
+
+$list->delete(3);
+echo "delete pos 3\n";
+$list->display();
+
+$list->insertBefore(20, 3);
+echo "insert 20 before pos 3\n";
+$list->display();
+
+$list->insertAfter(32, 3);
+echo "insert 32 after pos 3\n";
+$list->display();
+
+$list->unshift(21);
+echo "insert 21 to head\n";
+$list->display();
+
+$list->push(22);
+echo "insert 22 to tail\n";
+$list->display();
+
+$list->shift();
+echo "delete head\n";
+$list->display();
+
+$list->pop();
+echo "delete tail\n";
+$list->display();
+
+$list->update(30, 3);
+echo "update pos 3 to 30\n";
+$list->display();
+
+$list->reverse();
+echo "reverse\n";
+$list->display();
+
