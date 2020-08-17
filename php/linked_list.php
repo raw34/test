@@ -39,10 +39,10 @@ interface AcyclicLinkedList
 }
 
 /**
- * Class Node
+ * Class ListNode
  * @author Randy Chang
  */
-class Node
+class ListNode
 {
     public $data;
     public $prev;
@@ -64,7 +64,7 @@ class SingleLinkedList implements LinkedList
 
     public function __construct()
     {
-        $this->head = new Node(null);
+        $this->head = new ListNode(null);
     }
 
     public function init($arr = [])
@@ -76,7 +76,7 @@ class SingleLinkedList implements LinkedList
 
     public function insert($pos, $item)
     {
-        $node = new Node($item);
+        $node = new ListNode($item);
 
         $curr = $this->get($pos);
         $next = $curr->next;
@@ -95,7 +95,7 @@ class SingleLinkedList implements LinkedList
 
     public function update($pos, $item)
     {
-        $node = new Node($item);
+        $node = new ListNode($item);
 
         $prev = $this->get($pos - 1);
         $next = $prev->next->next;
@@ -129,7 +129,7 @@ class SingleLinkedList implements LinkedList
             $curr = $next;
         }
 
-        $headNew = new Node(null);
+        $headNew = new ListNode(null);
         $headNew->next = $prev;
 
         $this->head = $headNew;
@@ -177,7 +177,7 @@ class DoubleLinkedList extends SingleLinkedList
 
     public function insert($pos, $item)
     {
-        $node = new Node($item);
+        $node = new ListNode($item);
 
         $curr = $this->get($pos);
         $next = $curr->next;
@@ -209,7 +209,7 @@ class DoubleLinkedList extends SingleLinkedList
 
     public function update($pos, $item)
     {
-        $node = new Node($item);
+        $node = new ListNode($item);
 
         $prev = $this->get($pos - 1);
         $next = $prev->next->next;
