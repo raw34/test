@@ -12,7 +12,7 @@ interface LinkedList
 
     public function delete($pos);
 
-    public function update($item, $pos);
+    public function update($pos, $item);
 
     public function get($pos);
 
@@ -93,7 +93,7 @@ class SingleLinkedList implements LinkedList
         $prev->next = $next;
     }
 
-    public function update($item, $pos)
+    public function update($pos, $item)
     {
         $node = new Node($item);
 
@@ -207,7 +207,7 @@ class DoubleLinkedList extends SingleLinkedList
         }
     }
 
-    public function update($item, $pos)
+    public function update($pos, $item)
     {
         $node = new Node($item);
 
@@ -262,8 +262,8 @@ $list->delete(3);
 echo "delete pos 3\n";
 $list->display();
 
-$list->update(30, 3);
-echo "update pos 3 to 30\n";
+$list->update( 3, 25);
+echo "update pos 3 to 25\n";
 $list->display();
 
 echo "get pos 3\n";
