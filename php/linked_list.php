@@ -8,9 +8,7 @@ interface LinkedList
 {
     public function init($arr = []);
 
-    public function insertBefore($item, $pos);
-
-    public function insertAfter($item, $pos);
+    public function insert($pos, $item);
 
     public function delete($pos);
 
@@ -60,44 +58,31 @@ class Node
  * Class SingleLinkedList
  * @author Randy Chang
  */
-class SingleLinkedList implements LinkedList, AcyclicLinkedList
+class SingleLinkedList implements LinkedList
 {
     public $head;
-    public $length;
 
     public function __construct()
     {
         $this->head = new Node(null);
-        $this->length = 0;
     }
 
     public function init($arr = [])
     {
-        $total = count($arr);
-
-        for ($i = 0; $i < $total; $i++) {
-            $this->insertAfter($arr[$i], $i);
+        foreach ($arr as $k => $v) {
+            $this->insert($k, $v);
         }
-
-        return true;
     }
 
-    public function insertBefore($item, $pos)
-    {
-        $this->insertAfter($item, $pos - 1);
-    }
-
-    public function insertAfter($item, $pos)
+    public function insert($pos, $item)
     {
         $node = new Node($item);
 
-        $prev = $this->get($pos);
-        $next = $prev->next;
+        $curr = $this->get($pos);
+        $next = $curr->next;
 
         $node->next = $next;
-        $prev->next = $node;
-
-        $this->length++;
+        $curr->next = $node;
     }
 
     public function delete($pos)
@@ -106,8 +91,6 @@ class SingleLinkedList implements LinkedList, AcyclicLinkedList
         $next = $prev->next->next;
 
         $prev->next = $next;
-
-        $this->length--;
     }
 
     public function update($item, $pos)
@@ -125,32 +108,14 @@ class SingleLinkedList implements LinkedList, AcyclicLinkedList
     {
         $curr = $this->head;
 
-        for ($i = 0; $i < $pos; $i++) {
+        $i = 0;
+        while ($curr->next && $i <= $pos) {
             $curr = $curr->next;
+            $i++;
         }
 
         return $curr;
     }
-
-    public function unshift($item)
-    {
-        $this->insertBefore($item, 1);
-    }
-
-    public function shift()
-    {
-        $this->delete(1);
-    }
-
-    public function push($item)
-    {
-        $this->insertAfter($item, $this->length);
-	}
-
-    public function pop()
-    {
-        $this->delete($this->length);
-	}
 
     public function reverse()
     {
@@ -170,24 +135,31 @@ class SingleLinkedList implements LinkedList, AcyclicLinkedList
         $this->head = $headNew;
 	}
 
+    public function size()
+    {
+        $length = 0;
+
+        $curr = $this->head;
+
+        while ($curr->next) {
+            $curr = $curr->next;
+            $length++;
+        }
+
+        return $length;
+    }
+
     public function clear()
     {
         $this->head = null;
-
-        return true;
 	}
-
-    public function size()
-    {
-        return $this->length;
-    }
 
     public function display()
     {
         $curr = $this->head;
 
         while ($curr->next) {
-            echo $curr->next->data, ' ';
+            echo "{$curr->next->data} ";
             $curr = $curr->next;
         }
 
@@ -203,24 +175,22 @@ class DoubleLinkedList extends SingleLinkedList
 {
     public $tail;
 
-    public function insertAfter($item, $pos)
+    public function insert($pos, $item)
     {
         $node = new Node($item);
 
-        $prev = $this->get($pos);
-        $next = $prev->next;
+        $curr = $this->get($pos);
+        $next = $curr->next;
 
-        $node->prev = $prev;
+        $node->prev = $curr;
         $node->next = $next;
-        $prev->next = $node;
+        $curr->next = $node;
 
-        if ($pos === $this->length) {
-            $this->tail = $node;
-        } else {
+        if ($next !== null) {
             $next->prev = $node;
+        } else {
+            $this->tail = $node;
         }
-
-        $this->length++;
     }
 
     public function delete($pos)
@@ -230,13 +200,11 @@ class DoubleLinkedList extends SingleLinkedList
 
         $prev->next = $next;
 
-        if ($pos === $this->length) {
-            $this->tail = $prev;
-        } else {
+        if ($next !== null) {
             $next->prev = $prev;
+        } else {
+            $this->tail = $prev;
         }
-
-        $this->length--;
     }
 
     public function update($item, $pos)
@@ -244,14 +212,15 @@ class DoubleLinkedList extends SingleLinkedList
         $node = new Node($item);
 
         $prev = $this->get($pos - 1);
-        $next = $prev->next;
+        $next = $prev->next->next;
 
         $node->prev = $prev;
         $node->next = $next;
         $prev->next = $node;
-        $next->prev = $node;
 
-        if ($pos === $this->length) {
+        if ($next !== null) {
+            $next->prev = $node;
+        } else {
             $this->tail = $node;
         }
     }
@@ -278,18 +247,14 @@ class CircularLinkedList
 {
 }
 
-//$list = new SingleLinkedList();
-$list = new DoubleLinkedList();
+$list = new SingleLinkedList();
+//$list = new DoubleLinkedList();
 
 $list->init([1, 3, 4, 2]);
 echo "init 1, 3, 4, 2\n";
 $list->display();
 
-$list->insertBefore(20, 3);
-echo "insert 20 before pos 3\n";
-$list->display();
-
-$list->insertAfter(32, 3);
+$list->insert(3, 32);
 echo "insert 32 after pos 3\n";
 $list->display();
 
@@ -301,21 +266,8 @@ $list->update(30, 3);
 echo "update pos 3 to 30\n";
 $list->display();
 
-$list->unshift(21);
-echo "insert 21 to head\n";
-$list->display();
-
-$list->push(22);
-echo "insert 22 to tail\n";
-$list->display();
-
-$list->shift();
-echo "delete head\n";
-$list->display();
-
-$list->pop();
-echo "delete tail\n";
-$list->display();
+echo "get pos 3\n";
+echo $list->get(3)->data, "\n";
 
 $list->reverse();
 echo "reverse\n";
