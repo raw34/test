@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * Class ListNode
+ * @author Randy Chang
+ */
+class ListNode
+{
+    public $val;
+    public $prev;
+    public $next;
+
+    public function __construct($val)
+    {
+        $this->val = $val;
+    }
+}
+
+/**
  * Interface LinkedList
  * @author Randy Chang
  */
@@ -36,22 +52,6 @@ interface AcyclicLinkedList
     public function push($item);
 
     public function pop();
-}
-
-/**
- * Class ListNode
- * @author Randy Chang
- */
-class ListNode
-{
-    public $data;
-    public $prev;
-    public $next;
-
-	public function __construct($data)
-	{
-	    $this->data = $data;
-	}
 }
 
 /**
@@ -159,7 +159,7 @@ class SingleLinkedList implements LinkedList
         $curr = $this->head;
 
         while ($curr->next) {
-            echo "{$curr->next->data} ";
+            echo "{$curr->next->val} ";
             $curr = $curr->next;
         }
 
@@ -230,7 +230,7 @@ class DoubleLinkedList extends SingleLinkedList
         $curr = $this->tail;
 
         while ($curr->prev) {
-            echo $curr->prev->data, ' ';
+            echo $curr->prev->val, ' ';
             $curr = $curr->prev;
         }
 
@@ -267,7 +267,7 @@ echo "update pos 3 to 25\n";
 $list->display();
 
 echo "get pos 3\n";
-echo $list->get(3)->data, "\n";
+echo $list->get(3)->val, "\n";
 
 $list->reverse();
 echo "reverse\n";
