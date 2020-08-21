@@ -151,6 +151,31 @@ class BinaryTree
 
     public function levelOrderBfs($root)
     {
+        return $this->bfs4LevelOrder2($root);
+    }
+
+    public function bfs4LevelOrder1($queue, $level, $res)
+    {
+        if (empty($queue)) {
+            return $res;
+        }
+
+        $node = array_shift($queue);
+        $res[$level][] = $node->val;
+
+        if ($node->left !== null) {
+            array_push($queue, $node->left);
+        }
+
+        if ($node->right !== null) {
+            array_push($queue, $node->right);
+        }
+
+        return $this->bfs4LevelOrder1($queue, $level + 1, $res);
+    }
+
+    public function bfs4LevelOrder2($root)
+    {
         $queue = $res = [];
 
         if ($root === null) {
@@ -168,7 +193,7 @@ class BinaryTree
                 if ($node->left !== null) {
                     array_push($queue, $node->left);
                 }
-                
+
                 if ($node->right !== null) {
                     array_push($queue, $node->right);
                 }
@@ -178,7 +203,6 @@ class BinaryTree
 
         return $res;
     }
-
 }
 
 $arr = range(1, 10);
