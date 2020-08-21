@@ -60,6 +60,40 @@ class BinaryTree
     {
     }
 
+    public function getNodeNum($root)
+    {
+        if ($root === null) {
+            return 0;
+        }
+
+        return $this->getNodeNum($root->left) + $this->getNodeNum($root->right) + 1;
+    }
+
+    public function getLeafNum($root)
+    {
+        if ($root === null) {
+            return 0;
+        }
+
+        if ($root->left === null && $root->right === null) {
+            return 1;
+        }
+
+        return $this->getLeafNum($root->left) + $this->getLeafNum($root->right);
+    }
+
+    public function getDepth($root)
+    {
+        if ($root === null) {
+            return 0;
+        }
+
+        $left = $this->getDepth($root->left);
+        $right = $this->getDepth($root->right);
+
+        return max($left, $right) + 1;
+    }
+
     public function preOrder($root)
     {
         if ($root !== null) {
@@ -145,17 +179,6 @@ class BinaryTree
         return $res;
     }
 
-    public function getNodeNum()
-    {
-    }
-    
-    public function getLeafNum()
-    {
-    }
-    
-    public function getDepth()
-    {
-    }
 }
 
 $arr = range(1, 10);
@@ -163,8 +186,11 @@ $arr = range(1, 10);
 $tree = new BinaryTree();
 $root = $tree->build($arr);
 
-echo "前序遍历 = ", json_encode($tree->preOrder($root)), "\n";
-echo "中序遍历 = ", json_encode($tree->inOrder($root)), "\n";
-echo "后序遍历 = ", json_encode($tree->postOrder($root)), "\n";
-echo "层序遍历dfs = ", json_encode($tree->levelOrderDfs($root)), "\n";
-echo "层序遍历bfs = ", json_encode($tree->levelOrderBfs($root)), "\n";
+echo '节点总数 = ', $tree->getNodeNum($root), "\n";
+echo '叶子总数 = ', $tree->getLeafNum($root), "\n";
+echo '最大深度 = ', $tree->getDepth($root), "\n";
+echo '前序遍历 = ', json_encode($tree->preOrder($root)), "\n";
+echo '中序遍历 = ', json_encode($tree->inOrder($root)), "\n";
+echo '后序遍历 = ', json_encode($tree->postOrder($root)), "\n";
+echo '层序遍历dfs = ', json_encode($tree->levelOrderDfs($root)), "\n";
+echo '层序遍历bfs = ', json_encode($tree->levelOrderBfs($root)), "\n";
