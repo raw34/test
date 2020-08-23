@@ -43,6 +43,11 @@ class BinaryTree
         return $node;
     }
 
+    public function insertBST($root, $val)
+    {
+        
+    }
+
     public function build($arr = [])
     {
         return $this->insert($arr, 0);
@@ -205,7 +210,8 @@ class BinaryTree
     }
 }
 
-$arr = range(1, 10);
+//$arr = range(1, 10);
+$arr = range(10, 1);
 //$arr = range('a', 'z');
 $tree = new BinaryTree();
 $root = $tree->build($arr);
