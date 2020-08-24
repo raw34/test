@@ -289,7 +289,7 @@ echo '前序遍历-迭代 = ', json_encode($tree->preOrder2($root)), "\n";
 echo '中序遍历-递归 = ', json_encode($tree->inOrder1($root)), "\n";
 echo '中序遍历-迭代 = ', json_encode($tree->inOrder2($root)), "\n";
 echo '后序遍历-递归 = ', json_encode($tree->postOrder1($root)), "\n";
-echo '后序遍历-递归 = ', json_encode($tree->postOrder2($root)), "\n";
+echo '后序遍历-迭代 = ', json_encode($tree->postOrder2($root)), "\n";
 echo '层序遍历-dfs = ', json_encode($tree->levelOrder1($root)), "\n";
 echo '层序遍历-bfs = ', json_encode($tree->levelOrder2($root)), "\n";
 
