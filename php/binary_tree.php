@@ -43,14 +43,29 @@ class BinaryTree
         return $node;
     }
 
-    public function insertBST($root, $val)
-    {
-        
-    }
-
     public function build($arr = [])
     {
-        return $this->insert($arr, 0);
+        $root = new TreeNode($arr[0]);
+        $queue = [$root];
+
+        $i = 1;
+        while (!empty($queue)) {
+            $node = array_shift($queue);
+
+            if ($arr[$i] !== null) {
+                $node->left = new TreeNode($arr[$i]);
+                $queue[] = $node->left;
+            }
+            $i++;
+
+            if ($arr[$i] !== null) {
+                $node->right = new TreeNode(($arr[$i]));
+                $queue[] = $node->right;
+            }
+            $i++;
+        }
+
+        return $root;
     }
 
     public function buildFromPreIn($pre= [], $in = [])
@@ -99,87 +114,137 @@ class BinaryTree
         return max($left, $right) + 1;
     }
 
-    public function preOrder($root)
+    public function preOrder1($root)
     {
         if ($root !== null) {
             $this->stackPre[] = $root->val;
-            $this->preOrder($root->left);
-            $this->preOrder($root->right);
+            $this->preOrder1($root->left);
+            $this->preOrder1($root->right);
         }
 
         return $this->stackPre;
     }
 
-    public function inOrder($root)
+    public function preOrder2($root)
+    {
+        $res = $stack = [];
+
+        while ($root !== null || !empty($stack)) {
+            while ($root !== null) {
+                $res[] = $root->val;
+                $stack[] = $root;
+                $root = $root->left;
+            }
+
+            if (!empty($stack)) {
+                $root = array_pop($stack);
+                $root = $root->right;
+            }
+        }
+
+        return $res;
+    }
+
+    public function inOrder1($root)
     {
         if ($root !== null) {
-            $this->inOrder($root->left);
+            $this->inOrder1($root->left);
             $this->stackIn[] = $root->val;
-            $this->inOrder($root->right);
+            $this->inOrder1($root->right);
         }
 
         return $this->stackIn;
     }
 
-    public function postOrder($root)
+    public function inOrder2($root)
+    {
+        $res = $stack = [];
+
+        while ($root !== null || !empty($stack)) {
+            while ($root !== null) {
+                $stack[] = $root;
+                $root = $root->left;
+            }
+            
+            if (!empty($stack)) {
+                $root = array_pop($stack);
+                $res[] = $root->val;
+                $root = $root->right;
+            }
+        }
+
+        return $res;
+    }
+
+    public function postOrder1($root)
     {
         if ($root !== null) {
-            $this->postOrder($root->left);
-            $this->postOrder($root->right);
+            $this->postOrder1($root->left);
+            $this->postOrder1($root->right);
             $this->stackPost[] = $root->val;
         }
 
         return $this->stackPost;
     }
 
-    public function levelOrderDfs($root)
+    public function postOrder2($root)
     {
-        $res = [];
+        $res = $stack = [];
+        $prev = $curr = null;
+        $stack[] = $root;
 
-        $this->dfs4LevelOrder($root, 0, $res);
+        while ($length = count($stack)) {
+            $curr = $stack[$length - 1];
+            
+            if (
+                ($curr->left === null && $curr->right === null)
+                || ($prev !== null && ($prev === $curr->left || $prev === $curr->right))
+                )
+            {
+                $res[] = $curr->val;
+                $prev = array_pop($stack);
+            } else {
+                if ($curr->right !== null) {
+                    $stack[] = $curr->right;
+                }
+
+                if ($curr->left !== null) {
+                    $stack[] = $curr->left;
+                }
+            }
+        }
 
         return $res;
     }
 
-    public function dfs4LevelOrder($root, $level, &$res)
+    public function levelOrder1($root)
+    {
+        $res = [];
+
+        $this->levelOrder1dfs($root, 0, $res);
+
+        return $res;
+    }
+
+    public function levelOrder1dfs($root, $level, &$res)
     {
         $res[$level][] = $root->val;
 
         if ($root->left !== null) {
-            $this->dfs4LevelOrder($root->left, $level + 1, $res);
+            $this->levelOrder1dfs($root->left, $level + 1, $res);
         }
 
         if ($root->right !== null) {
-            $this->dfs4LevelOrder($root->right, $level + 1, $res);
+            $this->levelOrder1dfs($root->right, $level + 1, $res);
         }
     }
 
-    public function levelOrderBfs($root)
+    public function levelOrder2($root)
     {
-        return $this->bfs4LevelOrder2($root);
+        return $this->levelOrder2bfs($root);
     }
 
-    public function bfs4LevelOrder1($queue, $level, $res)
-    {
-        if (empty($queue)) {
-            return $res;
-        }
-
-        $node = array_shift($queue);
-        $res[$level][] = $node->val;
-
-        if ($node->left !== null) {
-            array_push($queue, $node->left);
-        }
-
-        if ($node->right !== null) {
-            array_push($queue, $node->right);
-        }
-
-        return $this->bfs4LevelOrder1($queue, $level + 1, $res);
-    }
-
-    public function bfs4LevelOrder2($root)
+    public function levelOrder2bfs($root)
     {
         $queue = $res = [];
 
@@ -187,7 +252,7 @@ class BinaryTree
             return null;
         }
 
-        array_push($queue, $root);
+        $queue[] = $root;
 
         $level = 0;
         while ($count = count($queue)) {
@@ -196,11 +261,11 @@ class BinaryTree
                 $res[$level][] = $node->val;
 
                 if ($node->left !== null) {
-                    array_push($queue, $node->left);
+                    $queue[] = $node->left;
                 }
 
                 if ($node->right !== null) {
-                    array_push($queue, $node->right);
+                    $queue[] = $node->right;
                 }
             }
             $level++;
@@ -210,8 +275,8 @@ class BinaryTree
     }
 }
 
-//$arr = range(1, 10);
-$arr = range(10, 1);
+$arr = range(1, 10);
+//$arr = range(10, 1);
 //$arr = range('a', 'z');
 $tree = new BinaryTree();
 $root = $tree->build($arr);
@@ -219,8 +284,12 @@ $root = $tree->build($arr);
 echo '节点总数 = ', $tree->getNodeNum($root), "\n";
 echo '叶子总数 = ', $tree->getLeafNum($root), "\n";
 echo '最大深度 = ', $tree->getDepth($root), "\n";
-echo '前序遍历 = ', json_encode($tree->preOrder($root)), "\n";
-echo '中序遍历 = ', json_encode($tree->inOrder($root)), "\n";
-echo '后序遍历 = ', json_encode($tree->postOrder($root)), "\n";
-echo '层序遍历dfs = ', json_encode($tree->levelOrderDfs($root)), "\n";
-echo '层序遍历bfs = ', json_encode($tree->levelOrderBfs($root)), "\n";
+echo '前序遍历1 = ', json_encode($tree->preOrder1($root)), "\n";
+echo '前序遍历2 = ', json_encode($tree->preOrder2($root)), "\n";
+echo '中序遍历1 = ', json_encode($tree->inOrder1($root)), "\n";
+echo '中序遍历2 = ', json_encode($tree->inOrder2($root)), "\n";
+echo '后序遍历1 = ', json_encode($tree->postOrder1($root)), "\n";
+echo '后序遍历2 = ', json_encode($tree->postOrder2($root)), "\n";
+echo '层序遍历dfs = ', json_encode($tree->levelOrder1($root)), "\n";
+echo '层序遍历bfs = ', json_encode($tree->levelOrder2($root)), "\n";
+
