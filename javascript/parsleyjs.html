@@ -26,9 +26,9 @@
 <!--    <label for="fullname">Full Name * :</label>-->
 <!--    <input type="text" class="form-control" name="fullname" data-parsley-required="" data-parsley-required-message="全名必填"></br>-->
 
-    <input type="number" name="dob-day" value="" maxlength="2" class="js-dob-day" required="required" data-parsley-date="js-dob">
-    <input type="number" name="dob-month" value="" maxlength="2" class="js-dob-month">
-    <input type="number" name="dob-year" value="" maxlength="4" class="js-dob-year">
+<!--    <input type="number" name="dob-day" value="" maxlength="2" class="js-dob-day" required="required" data-parsley-date="js-dob" data-parsley-date-message="fffffsss">-->
+<!--    <input type="number" name="dob-month" value="" maxlength="2" class="js-dob-month">-->
+<!--    <input type="number" name="dob-year" value="" maxlength="4" class="js-dob-year">-->
 
 <!--    <label for="email">Email * :</label>-->
 <!--    <input type="email" class="form-control" name="email" data-parsley-trigger="change" required="">-->
@@ -76,6 +76,14 @@
 
     <br>
 <!--    <input type="submit" class="btn btn-default" value="validate">-->
+
+<!--    <input type="text" name="smc" data-parsley-sibling-mincount="#demo-form .form-smc:2" class="form-smc"><br/>-->
+<!--    <input type="text" name="sml" data-parsley-multiple-length="[8,16]"><br/>-->
+        <input type="text" name="sce1" data-parsley-count-equal="#demo-form .form-smc1:#demo-form .form-smc2" class="form-smc1"><br/>
+        <input type="text" name="sce1" class="form-smc1"><br/>
+        <input type="text" name="sce2" class="form-smc2"><br/>
+        <input type="text" name="sce2" class="form-smc2"><br/>
+
     <button class="btn btn-submit">validate</button>
 
     <p><small>* Please, note that this demo form is not a perfect example of UX-awareness. The aim here is to show a quick overview of parsley-API and Parsley customizable behavior.</small></p>
@@ -149,8 +157,117 @@
                 return false;
             }
         },
-    })
-    .addMessage('zh-cn', 'date', '日期格式错误');
+    }).addMessage('zh-cn', 'date', '日期格式错误');
+
+    window.Parsley.addValidator('duplicateSibling', {
+        validate: function(value, selector) {
+            let values = [];
+
+            $(selector).each(function (){
+                let v = $(this).val();
+
+                if ($.inArray(v, values) !== -1) {
+                    return false;
+                }
+
+                values.push(v);
+            });
+
+            return $(selector).length === values.length;
+        },
+    }).addMessage('zh-cn', 'duplicateSibling', '%s 选择器有重复的兄弟元素');
+
+    window.Parsley.addValidator('siblingMincount', {
+        validate: function(value, requirement) {
+            let params = requirement.split(':');
+            let selector = params[0];
+            let min = params[1];
+            let values = [];
+
+            $(selector).each(function (){
+                let v = $(this).val();
+
+                if (v === '') {
+                    return false;
+                }
+
+                values.push(v);
+            });
+
+            return values.length >= min;
+        },
+    }).addMessage('zh-cn', 'siblingMincount', '%s 选择器至少 %s 个兄弟元素');
+
+    window.Parsley.addValidator('siblingMaxcount', {
+        validate: function(value, requirement) {
+            let params = requirement.split(':');
+            let selector = params[0];
+            let max = params[1];
+            let values = [];
+
+            $(selector).each(function (){
+                let v = $(this).val();
+
+                if (v === '') {
+                    return false;
+                }
+
+                values.push(v);
+            });
+
+            return values <= max;
+        },
+    }).addMessage('zh-cn', 'siblingMaxcount', '%s 选择器至多 %s 个兄弟元素');
+
+    window.Parsley.addValidator('multipleLength', {
+        validate: function(value, requirement) {
+            let params = requirement.split(':');
+            let range = params[1].split(',');
+            let selector = params[0];
+            let min = range[0];
+            let max = range[1];
+            let total = 0;
+
+            $(selector).each(function () {
+                total += $(this).val().length;
+            });
+
+            return total >= min && total <= max;
+        },
+    }).addMessage('zh-cn', 'multipleLength', '%s 选择器字符总长度应该在 %s 到 %s 之间');
+
+    window.Parsley.addValidator('countEqual', {
+        validate: function(value, requirement) {
+            let params = requirement.split(':');
+            let selector1 = params[0];
+            let selector2 = params[1];
+            let values1 = [];
+            let values2 = [];
+
+            $(selector1).each(function (){
+                let v = $(this).val();
+
+                if (v === '') {
+                    return false;
+                }
+
+                values1.push(v);
+            });
+
+            $(selector2).each(function (){
+                let v = $(this).val();
+
+                if (v === '') {
+                    return false;
+                }
+
+                values2.push(v);
+            });
+
+            return values1.length === values2.length;
+        },
+        priority: 1
+    }).addMessage('zh-cn', 'countEqual', '%s 选择器 和 选择器 %s 元素数量不一致');
 
     // $(function () {
     function validate1(formId) {
@@ -169,6 +286,8 @@
             }
 
             alert(errors)
+        }).on('form:submit', function (){
+            return false;
         });
     }
 
