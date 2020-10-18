@@ -8,9 +8,14 @@ require_once './vendor/autoload.php';
  */
 class guzzle
 {
-    public function handleResponseBody(\Psr\Http\Message\ResponseInterface $response, int $index)
+    public function handleResponseSuccess(\Psr\Http\Message\ResponseInterface $response, int $index)
     {
         echo 'index = ', $index, ' response = ' . $response->getBody(), "\n";
+    }
+
+    public function handleResponseFail(string $reason , int $index)
+    {
+        echo 'index = ', $index, ' reason = ' . $reason, "\n";
     }
 }
 
@@ -29,16 +34,20 @@ $requests = function ($total) use ($urls) {
     }
 };
 
-$helper = new guzzle();
+$helper = [
+    'class' => new guzzle(),
+    'methodSuccess' => 'handleResponseSuccess',
+    'methodFail' => 'handleResponseFail',
+];
+
 
 $pool = new \GuzzleHttp\Pool($client, $requests(count($urls)), [
     'concurrency' => 3,
     'fulfilled' => function ($response, $index) use ($helper){
-        $helper->handleResponseBody($response, $index);
+        $helper['class']->{$helper['methodSuccess']}($response, $index);
     },
-//    'fulfilled' => [guzzle::class, 'handleResponseBody'],
-    'rejected' => function ($reason, $index){
-        echo 'index = ', $index, ' reason = ' . $reason, "\n";
+    'rejected' => function ($reason, $index) use ($helper){
+        $helper['class']->{$helper['methodFail']}($reason, $index);
     },
 ]);
 
