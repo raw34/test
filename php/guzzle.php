@@ -44,7 +44,7 @@ $helper = [
 $pool = new \GuzzleHttp\Pool($client, $requests(count($urls)), [
     'concurrency' => 3,
     'fulfilled' => function ($response, $index) use ($helper){
-        $helper['class']->{$helper['methodSuccess']}($response, $index);
+        call_user_func([$helper['class'], $helper['methodSuccess']], $response, $index);
     },
     'rejected' => function ($reason, $index) use ($helper){
         $helper['class']->{$helper['methodFail']}($reason, $index);
