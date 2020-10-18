@@ -1,0 +1,30 @@
+{
+    "name": "raw34/test",
+    "description": "test",
+    "type": "library",
+    "license": "test",
+    "minimum-stability": "stable",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://mirrors.aliyun.com/composer"
+        },
+        {
+            "packagist": false
+        }
+    ]
+}
