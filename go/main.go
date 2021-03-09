@@ -4,6 +4,7 @@ func main() {
 	//hello()
 	//ping()
 	//slice1()
-	time1()
-	time2()
+	//time1()
+	//time2()
+	time3()
 }
