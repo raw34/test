@@ -5,4 +5,5 @@ func main() {
 	//ping()
 	//slice1()
 	time1()
+	time2()
 }
