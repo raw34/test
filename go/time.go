@@ -20,3 +20,9 @@ func time3()  {
 	fmt.Println(now.AddDate(0, 0, -now.Day() + 1).Format("2006-01-02"))
 	fmt.Println(now.AddDate(0, 1, -now.Day()).Format("2006-01-02"))
 }
+
+func time4()  {
+	now := time.Now()
+	fmt.Println(now.AddDate(0, int(-now.Month() + 1), -now.Day() + 1).Format("2006-01-02"))
+	fmt.Println(now.AddDate(1, int(-now.Month() + 1), -now.Day()).Format("2006-01-02"))
+}
