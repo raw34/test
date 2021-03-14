@@ -1,6 +1,8 @@
 package http
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type ClientInterface interface {
 	Do(req *http.Request) (*http.Response, error)

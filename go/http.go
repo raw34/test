@@ -3,7 +3,6 @@ package main
 import (
 	"io/ioutil"
 	"log"
-	"net/http"
 	netHttp "raw34.xyz/test/go/net/http"
 )
 
@@ -22,8 +21,23 @@ type HttpClientInterface interface {
 }
 
 type HttpClient struct {
+	Request netHttp.RequestInterface
 	Client netHttp.ClientInterface
 	HttpClientInterface
+}
+
+func (hc *HttpClient) getRequest() netHttp.RequestInterface {
+	if hc.Request != nil {
+		return hc.Request
+	}
+
+	request := netHttp.Request{}
+	hc.Request = &request
+	return hc.Request
+}
+
+func (hc *HttpClient) SetRequest(request netHttp.RequestInterface)  {
+	hc.Request = request
 }
 
 func (hc *HttpClient) getClient() netHttp.ClientInterface {
@@ -44,7 +58,8 @@ func (hc *HttpClient) SetHeaders(headers map[string]string) {
 }
 
 func (hc *HttpClient) Get(url string) string {
-	req, _ := http.NewRequest("GET", url, nil)
+	request := hc.getRequest()
+	req, _ := request.NewRequest("GET", url, nil)
 	client := hc.getClient()
 	resp, err := client.Do(req)
 
