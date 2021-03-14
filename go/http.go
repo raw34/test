@@ -26,7 +26,7 @@ type HttpClient struct {
 	HttpClientInterface
 }
 
-func (hc HttpClient) getClient() netHttp.ClientInterface {
+func (hc *HttpClient) getClient() netHttp.ClientInterface {
 	if  hc.Client != nil {
 		return hc.Client
 	}
@@ -36,14 +36,14 @@ func (hc HttpClient) getClient() netHttp.ClientInterface {
 	return hc.Client
 }
 
-func (hc HttpClient) SetClient(client netHttp.ClientInterface)  {
+func (hc *HttpClient) SetClient(client netHttp.ClientInterface)  {
 	hc.Client = client
 }
 
-func (hc HttpClient) SetHeaders(headers map[string]string) {
+func (hc *HttpClient) SetHeaders(headers map[string]string) {
 }
 
-func (hc HttpClient) Get(url string) string {
+func (hc *HttpClient) Get(url string) string {
 	req, _ := http.NewRequest("GET", url, nil)
 	client := hc.getClient()
 	resp, err := client.Do(req)
@@ -63,7 +63,7 @@ func (hc HttpClient) Get(url string) string {
 	return string(body)
 }
 
-func (hc HttpClient) Post(url string, params map[string]Param) string {
+func (hc *HttpClient) Post(url string, params map[string]Param) string {
 	//body := map[string]string{
 	//	"id": "100",
 	//	"username": "raw34",
@@ -78,14 +78,14 @@ func (hc HttpClient) Post(url string, params map[string]Param) string {
 	return ""
 }
 
-func (hc HttpClient) Put(url string, params map[string]Param) string {
+func (hc *HttpClient) Put(url string, params map[string]Param) string {
 	return ""
 }
 
-func (hc HttpClient) Delete(url string) string {
+func (hc *HttpClient) Delete(url string) string {
 	return ""
 }
 
-func (hc HttpClient) Head(url string) string {
+func (hc *HttpClient) Head(url string) string {
 	return ""
 }
