@@ -1,5 +1,7 @@
 package main
 
+import "log"
+
 func main() {
 	//hello()
 	//ping()
@@ -10,5 +12,8 @@ func main() {
 	//time4()
 	//time5()
 	//csv1()
-	csv2()
+	//csv2()
+	//json1()
+	//json2()
+	log.Println(httpGet())
 }
