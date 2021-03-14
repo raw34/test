@@ -15,6 +15,12 @@ func main() {
 	//csv2()
 	//json1()
 	//json2()
-	httpClient := HttpClientIml{}
+	//cat := Cat{}
+	//cat.Eat()
+	//cat.Bark()
+	//dog := Dog{}
+	//dog.Eat()
+	//dog.Bark()
+	httpClient := HttpClient{}
 	log.Println(httpClient.Get("https://petstore.swagger.io/v2/user/raw34"))
 }

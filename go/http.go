@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	netHttp "raw34.xyz/test/go/net/http"
 )
 
 type Param struct {
@@ -11,7 +12,7 @@ type Param struct {
 	value interface{}
 }
 
-type HttpClient interface {
+type HttpClientInterface interface {
 	SetHeaders(headers map[string]string)
 	Head(url string) string
 	Get(url string) string
@@ -20,15 +21,32 @@ type HttpClient interface {
 	Delete(url string) string
 }
 
-type HttpClientIml struct {
-	HttpClient
+type HttpClient struct {
+	Client *netHttp.Client
+	HttpClientInterface
 }
 
-func (client HttpClientIml) SetHeaders(headers map[string]string) {
+func (hc HttpClient) getClient() *netHttp.Client {
+	if  hc.Client != nil {
+		return hc.Client
+	}
+
+	client := netHttp.Client{}
+	hc.Client = &client
+	return hc.Client
 }
 
-func (client HttpClientIml) Get(url string) string {
-	resp, err := http.Get(url)
+func (hc HttpClient) SetClient(client *netHttp.Client)  {
+	hc.Client = client
+}
+
+func (hc HttpClient) SetHeaders(headers map[string]string) {
+}
+
+func (hc HttpClient) Get(url string) string {
+	req, _ := http.NewRequest("GET", url, nil)
+	client := hc.getClient()
+	resp, err := client.Do(req)
 
 	if err != nil {
 		log.Fatal(err)
@@ -45,7 +63,7 @@ func (client HttpClientIml) Get(url string) string {
 	return string(body)
 }
 
-func (client HttpClientIml) Post(url string, params map[string]Param) string {
+func (hc HttpClient) Post(url string, params map[string]Param) string {
 	//body := map[string]string{
 	//	"id": "100",
 	//	"username": "raw34",
@@ -60,14 +78,14 @@ func (client HttpClientIml) Post(url string, params map[string]Param) string {
 	return ""
 }
 
-func (client HttpClientIml) Put(url string, params map[string]Param) string {
+func (hc HttpClient) Put(url string, params map[string]Param) string {
 	return ""
 }
 
-func (client HttpClientIml) Delete(url string) string {
+func (hc HttpClient) Delete(url string) string {
 	return ""
 }
 
-func (client HttpClientIml) Head(url string) string {
+func (hc HttpClient) Head(url string) string {
 	return ""
 }
