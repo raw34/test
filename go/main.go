@@ -9,5 +9,6 @@ func main() {
 	//time3()
 	//time4()
 	//time5()
-	csv1()
+	//csv1()
+	csv2()
 }
