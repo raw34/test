@@ -15,5 +15,6 @@ func main() {
 	//csv2()
 	//json1()
 	//json2()
-	log.Println(httpGet())
+	httpClient := HttpClientIml{}
+	log.Println(httpClient.Get("https://petstore.swagger.io/v2/user/raw34"))
 }

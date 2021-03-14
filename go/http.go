@@ -6,8 +6,29 @@ import (
 	"net/http"
 )
 
-func httpGet() string {
-	resp, err := http.Get("https://petstore.swagger.io/v2/user/raw34")
+type Param struct {
+	key string
+	value interface{}
+}
+
+type HttpClient interface {
+	SetHeaders(headers map[string]string)
+	Head(url string) string
+	Get(url string) string
+	Post(url string, params map[string]Param) string
+	Put(url string, params map[string]Param) string
+	Delete(url string) string
+}
+
+type HttpClientIml struct {
+	HttpClient
+}
+
+func (client HttpClientIml) SetHeaders(headers map[string]string) {
+}
+
+func (client HttpClientIml) Get(url string) string {
+	resp, err := http.Get(url)
 
 	if err != nil {
 		log.Fatal(err)
@@ -24,7 +45,7 @@ func httpGet() string {
 	return string(body)
 }
 
-func httpPost()  {
+func (client HttpClientIml) Post(url string, params map[string]Param) string {
 	//body := map[string]string{
 	//	"id": "100",
 	//	"username": "raw34",
@@ -36,16 +57,17 @@ func httpPost()  {
 	//	"userStatus": "0",
 	//}
 	//log.Println(body)
+	return ""
 }
 
-func httpPut()  {
-	
+func (client HttpClientIml) Put(url string, params map[string]Param) string {
+	return ""
 }
 
-func httpDelete()  {
-	
+func (client HttpClientIml) Delete(url string) string {
+	return ""
 }
 
-func httpHead()  {
-	
+func (client HttpClientIml) Head(url string) string {
+	return ""
 }

@@ -1,6 +1,6 @@
 package main
 
-type animal struct {
+type Animal struct {
 	name string
 	age int
 }

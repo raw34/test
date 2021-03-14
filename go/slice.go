@@ -1,10 +1,10 @@
 package main
 
-func slice1(names []string) []animal {
-	animals := make([]animal, 0)
+func slice1(names []string) []Animal {
+	animals := make([]Animal, 0)
 
 	for _, name := range names {
-		animals = append(animals, animal{name: name, age: 2})
+		animals = append(animals, Animal{name: name, age: 2})
 	}
 
 	return animals
