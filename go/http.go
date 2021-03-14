@@ -4,7 +4,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	netHttp "raw34.xyz/test/go/net/http"
 )
 
 type Param struct {
@@ -22,21 +21,21 @@ type HttpClientInterface interface {
 }
 
 type HttpClient struct {
-	Client *netHttp.Client
+	Client *http.Client
 	HttpClientInterface
 }
 
-func (hc HttpClient) getClient() *netHttp.Client {
+func (hc HttpClient) getClient() *http.Client {
 	if  hc.Client != nil {
 		return hc.Client
 	}
 
-	client := netHttp.Client{}
+	client := http.Client{}
 	hc.Client = &client
 	return hc.Client
 }
 
-func (hc HttpClient) SetClient(client *netHttp.Client)  {
+func (hc HttpClient) SetClient(client *http.Client)  {
 	hc.Client = client
 }
 
