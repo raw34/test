@@ -1,12 +1,11 @@
 package main
 
-import "fmt"
+func slice1(names []string) []animal {
+	animals := make([]animal, 0)
 
-func slice1() {
-	animals := make([]animal, 5)
+	for _, name := range names {
+		animals = append(animals, animal{name: name, age: 2})
+	}
 
-	animals = append(animals, animal{name: "灯泡", age: 2})
-	animals = append(animals, animal{name: "闹闹", age: 2})
-
-	fmt.Println(animals)
+	return animals
 }
