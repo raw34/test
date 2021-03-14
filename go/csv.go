@@ -39,6 +39,6 @@ func csv2()  {
 	err = w.WriteAll(records) // calls Flush internally
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 }
