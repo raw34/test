@@ -5,6 +5,7 @@
 package http
 
 import (
+	io "io"
 	http "net/http"
 	reflect "reflect"
 
@@ -47,4 +48,19 @@ func (m *MockClientInterface) Do(req *http.Request) (*http.Response, error) {
 func (mr *MockClientInterfaceMockRecorder) Do(req interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Do", reflect.TypeOf((*MockClientInterface)(nil).Do), req)
+}
+
+// DoRequest mocks base method.
+func (m *MockClientInterface) DoRequest(method, url string, body io.Reader) (*http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DoRequest", method, url, body)
+	ret0, _ := ret[0].(*http.Response)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DoRequest indicates an expected call of DoRequest.
+func (mr *MockClientInterfaceMockRecorder) DoRequest(method, url, body interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DoRequest", reflect.TypeOf((*MockClientInterface)(nil).DoRequest), method, url, body)
 }
