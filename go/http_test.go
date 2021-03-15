@@ -16,8 +16,8 @@ func Test_httpGet(t *testing.T) {
 	ctrl.Finish()
 	requestStub, _ := http.NewRequest("GET", url, nil)
 	ioReadCloserMock := io.NewMockReadCloser(ctrl)
-	ioReadCloserMock.EXPECT().Read(nil).Return(nil)
-	ioReadCloserMock.EXPECT().Close().Return()
+	ioReadCloserMock.EXPECT().Read(nil).Return(0, nil)
+	ioReadCloserMock.EXPECT().Close().Return(nil)
 	responseStub := &http.Response{}
 	responseStub.Body = ioReadCloserMock
 	clientMock := netHttp.NewMockClientInterface(ctrl)
