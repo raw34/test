@@ -25,5 +25,7 @@ func (c *Client) DoRequest(method, url string, body io.Reader) (*http.Response, 
 	if err != nil {
 		log.Println(err)
 	}
+	// set headers
+	// set cookies
 	return c.Do(req)
 }

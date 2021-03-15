@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 func main() {
 	//hello()
 	//ping()
@@ -21,6 +19,18 @@ func main() {
 	//dog := Dog{}
 	//dog.Eat()
 	//dog.Bark()
-	httpClient := HttpClient{}
-	log.Println(httpClient.Get("https://petstore.swagger.io/v2/user/raw34"))
+	//httpClient := &HttpClient{}
+	//log.Println(httpClient.Get("https://petstore.swagger.io/v2/user/raw34"))
+	//api := "https://petstore.swagger.io/v2/user"
+	//params := map[string]string{
+	//	"id": "100",
+	//	"username": "raw34",
+	//	"firstName": "Randy",
+	//	"lastName": "Chang",
+	//	"email": "raw0034@gmail.com",
+	//	"password": "xxxxxx",
+	//	"phone": "100000",
+	//	"userStatus": "0",
+	//}
+	//log.Println(httpClient.Post(api, params))
 }
