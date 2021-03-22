@@ -33,4 +33,8 @@ func main() {
 	//	"userStatus": "0",
 	//}
 	//log.Println(httpClient.Post(api, params))
+	//gorm1()
+	//gorm2()
+	//gorm3()
+	//gorm4()
 }
