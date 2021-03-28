@@ -1,7 +1,14 @@
 #!/bin/bash
 
 # 获取参数
-project="dsp4"
+#month="202007"
+#branches=$(git branch -a | grep "${month}")
+#
+#for branch in ${branches} ; do
+#  echo "${branch}"
+#done
+
+project="dsp5"
 branch="b_5195_20200703_dsp"
 date="2020-07-03"
 host="http://localhost:9000"
@@ -37,22 +44,17 @@ if [[ ${branch} == "" || ${date} == "" || ${project} == "" || ${token} == "" ]];
 fi
 
 # 切换到目标分支
-#echo "git checkout ${branch}"
 git checkout "${branch}"
 
 # 切换到分支创建前commit
 commit=$(git log --pretty=format:"%h" --before="${date} 00:00:00" | head -1)
-#echo "git checkout ${commit}"
 git checkout "${commit}"
 
 # 执行sonar分析并上报
-#echo "sonar-scanner -Dsonar.projectKey='${project}' -Dsonar.host.url='${host}' -Dsonar.login='${token}' -Dsonar.sourceEncoding=UTF-8"
-sonar-scanner -Dsonar.projectKey="${project}" -Dsonar.host.url="${host}" -Dsonar.login="${token}" -Dsonar.sourceEncoding=UTF-8
+sonar-scanner -Dsonar.projectKey="${project}" -Dsonar.host.url="${host}" -Dsonar.login="${token}" -Dsonar.sourceEncoding=UTF-8 >> sonar.log
 
 # 切换到目标分支
-#echo "git checkout ${branch}"
 git checkout "${branch}"
 
 # 执行sonar分析并上报
-#echo "sonar-scanner -Dsonar.projectKey='${project}' -Dsonar.host.url='${host}' -Dsonar.login='${token}' -Dsonar.sourceEncoding=UTF-8"
-sonar-scanner -Dsonar.projectKey="${project}" -Dsonar.host.url="${host}" -Dsonar.login="${token}" -Dsonar.sourceEncoding=UTF-8
+sonar-scanner -Dsonar.projectKey="${project}" -Dsonar.host.url="${host}" -Dsonar.login="${token}" -Dsonar.sourceEncoding=UTF-8 >> sonar.log
