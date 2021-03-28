@@ -33,5 +33,9 @@ func main() {
 	//	"userStatus": "0",
 	//}
 	//log.Println(httpClient.Post(api, params))
-	git1()
+	//gorm1()
+	//gorm2()
+	//gorm3()
+	//gorm4()
+	//git1()
 }

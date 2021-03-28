@@ -7,4 +7,6 @@ require (
 	github.com/golang/mock v1.5.0
 	github.com/libgit2/git2go/v31 v31.4.12
 	github.com/stretchr/testify v1.4.0
+	gorm.io/driver/sqlite v1.1.4
+	gorm.io/gorm v1.21.4
 )
