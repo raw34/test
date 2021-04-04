@@ -24,7 +24,6 @@ type HttpClientInterface interface {
 
 type HttpClient struct {
 	Client netHttp.ClientInterface
-	HttpClientInterface
 }
 
 func (hc *HttpClient) getClient() netHttp.ClientInterface {

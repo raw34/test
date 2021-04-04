@@ -1,5 +1,7 @@
 package main
 
+import "log"
+
 func main() {
 	//hello()
 	//ping()
@@ -19,8 +21,8 @@ func main() {
 	//dog := Dog{}
 	//dog.Eat()
 	//dog.Bark()
-	//httpClient := &HttpClient{}
-	//log.Println(httpClient.Get("https://petstore.swagger.io/v2/user/raw34"))
+	//request := &HttpClient{}
+	//log.Println(request.Get("https://petstore.swagger.io/v2/user/raw34"))
 	//api := "https://petstore.swagger.io/v2/user"
 	//params := map[string]string{
 	//	"id": "100",
@@ -32,12 +34,15 @@ func main() {
 	//	"phone": "100000",
 	//	"userStatus": "0",
 	//}
-	//log.Println(httpClient.Post(api, params))
+	//log.Println(request.Post(api, params))
 	//gorm1()
 	//gorm2()
 	//gorm3()
 	//gorm4()
 	//git1()
-	base64Encode()
-	base64Decode()
+	//base64Encode()
+	//base64Decode()
+	client := RestyClient{}
+	res, _ := client.SimpleGet("http://top.baidu.com/user/pass?time=552179")
+	log.Println(res)
 }
