@@ -38,4 +38,6 @@ func main() {
 	//gorm3()
 	//gorm4()
 	//git1()
+	base64Encode()
+	base64Decode()
 }
