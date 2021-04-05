@@ -39,7 +39,8 @@ func (c *Client) getRawClient() *resty.Client {
 }
 
 func (c *Client) SetHeader(header, value string) *Client {
-	c.rawClient.SetHeader(header, value)
+	rawClient := c.getRawClient()
+	rawClient.SetHeader(header, value)
 	return c
 }
 
