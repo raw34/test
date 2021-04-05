@@ -12,7 +12,6 @@ type ClientInterface interface {
 }
 
 type Client struct {
-	ClientInterface
 }
 
 func (c *Client) Do(req *http.Request) (*http.Response, error) {

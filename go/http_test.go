@@ -13,12 +13,12 @@ import (
 func Test_httpGet(t *testing.T) {
 	method := "GET"
 	url := "https://petstore.swagger.io/v2/user/raw34"
-	stubBodyString := `{"id":100,"username":"raw34","firstName":"Randy","lastName":"Chang","email":"raw0034@gmail.com","password":"xxxxxx","phone":"100000","userStatus":0}`
+	bodyStringStub := `{"id":100,"username":"raw34","firstName":"Randy","lastName":"Chang","email":"raw0034@gmail.com","password":"xxxxxx","phone":"100000","userStatus":0}`
 
 	ctrl := gomock.NewController(t)
 	ctrl.Finish()
 
-	ioReadCloserStub := ioutil.NopCloser(bytes.NewReader([]byte(stubBodyString)))
+	ioReadCloserStub := ioutil.NopCloser(bytes.NewReader([]byte(bodyStringStub)))
 	responseStub := &http.Response{}
 	responseStub.Body = ioReadCloserStub
 
@@ -26,11 +26,11 @@ func Test_httpGet(t *testing.T) {
 	clientMock.EXPECT().DoRequest(method, url, nil).Return(responseStub, nil)
 
 	httpClient := &HttpClient{}
-	httpClient.SetClient(clientMock)
+	httpClient.setClient(clientMock)
 
 	res := httpClient.Get(url)
 
-	assert.Equal(t, stubBodyString, res)
+	assert.Equal(t, bodyStringStub, res)
 }
 
 func Test_httpPost(t *testing.T) {

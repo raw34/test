@@ -2,19 +2,18 @@ package resty
 
 import (
 	"github.com/go-resty/resty/v2"
-	"net/http"
 )
 
 type ClientInterface interface {
-	SetHeader(header, value string) ClientInterface
-	SetHeaders(headers map[string]string) ClientInterface
-	SetQueryParams(params map[string]string) ClientInterface
-	SetQueryString(query string) ClientInterface
-	SetFormData(data map[string]string) ClientInterface
-	SetBasicAuth(username, password string) ClientInterface
-	SetAuthToken(token string) ClientInterface
-	SetCookie(hc *http.Cookie) ClientInterface
-	SetCookies(rs []*http.Cookie) ClientInterface
+	SetHeader(header, value string)
+	//SetHeaders(headers map[string]string)
+	//SetQueryParams(params map[string]string)
+	//SetQueryString(query string)
+	//SetFormData(data map[string]string)
+	//SetBasicAuth(username, password string)
+	//SetAuthToken(token string)
+	//SetCookie(hc *http.Cookie)
+	//SetCookies(rs []*http.Cookie)
 
 	Get(url string) (ResponseInterface, error)
 	Head(url string) (ResponseInterface, error)
@@ -38,17 +37,40 @@ func (c *Client) getRawClient() *resty.Client {
 	return c.rawClient
 }
 
-func (c *Client) SetHeader(header, value string) *Client {
+func (c *Client) SetHeader(header, value string) {
 	rawClient := c.getRawClient()
 	rawClient.SetHeader(header, value)
-	return c
 }
 
-func (c *Client) Get(url string) (*Response, error) {
+func (c *Client) Get(url string) (ResponseInterface, error) {
 	return c.Execute(resty.MethodGet, url)
 }
 
-func (c *Client) Execute(method, url string) (*Response, error) {
+func (c *Client) Head(url string) (ResponseInterface, error) {
+	return c.Execute(resty.MethodHead, url)
+}
+
+func (c *Client) Post(url string) (ResponseInterface, error) {
+	return c.Execute(resty.MethodPost, url)
+}
+
+func (c *Client) Put(url string) (ResponseInterface, error) {
+	return c.Execute(resty.MethodPut, url)
+}
+
+func (c *Client) Delete(url string) (ResponseInterface, error) {
+	return c.Execute(resty.MethodDelete, url)
+}
+
+func (c *Client) Options(url string) (ResponseInterface, error) {
+	return c.Execute(resty.MethodOptions, url)
+}
+
+func (c *Client) Patch(url string) (ResponseInterface, error) {
+	return c.Execute(resty.MethodPatch, url)
+}
+
+func (c *Client) Execute(method, url string) (ResponseInterface, error) {
 	rawClient := c.getRawClient()
 	req := rawClient.NewRequest()
 	resp, err := req.Execute(method, url)

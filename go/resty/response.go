@@ -11,10 +11,20 @@ type Response struct {
 	rawResponse *resty.Response
 }
 
+func (r *Response) getRawResponse() *resty.Response {
+	if r.rawResponse == nil {
+		r.rawResponse = &resty.Response{}
+	}
+	
+	return r.rawResponse
+}
+
 func (r *Response) StatusCode() int {
-	return r.rawResponse.StatusCode()
+	rawResponse := r.getRawResponse()
+	return rawResponse.StatusCode()
 }
 
 func (r *Response) String() string {
-	return r.rawResponse.String()
+	rawResponse := r.getRawResponse()
+	return rawResponse.String()
 }

@@ -5,15 +5,32 @@ import (
 	"raw34.xyz/test/go/resty"
 )
 
-func restyGet(url string)  {
-	client := resty.Client{}
+type Resty struct {
+	client resty.ClientInterface
+}
 
-	resp, err := client.SetHeader("Accept", "application/json").Get(url)
+func (r *Resty) getClient() resty.ClientInterface {
+	if r.client == nil {
+		r.client = &resty.Client{}
+	}
+
+	return r.client
+}
+
+func (r *Resty) setClient(client resty.ClientInterface)  {
+	r.client = client
+}
+
+func (r *Resty) Get(url string) (resty.ResponseInterface, error)  {
+	client := r.getClient()
+
+	client.SetHeader("Accept", "application/json")
+	resp, err := client.Get(url)
 
 	if err != nil {
 		log.Println(err)
-		panic(err.Error())
+		return nil, err
 	}
 
-	log.Println(resp)
+	return resp, nil
 }

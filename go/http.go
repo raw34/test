@@ -36,7 +36,7 @@ func (hc *HttpClient) getClient() netHttp.ClientInterface {
 	return hc.Client
 }
 
-func (hc *HttpClient) SetClient(client netHttp.ClientInterface)  {
+func (hc *HttpClient) setClient(client netHttp.ClientInterface)  {
 	hc.Client = client
 }
 
