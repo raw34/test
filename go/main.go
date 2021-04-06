@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 func main() {
 	//hello()
 	//ping()
@@ -42,7 +40,9 @@ func main() {
 	//git1()
 	//base64Encode()
 	//base64Decode()
-	resty := Resty{}
-	res, _ := resty.Get("http://top.baidu.com/user/pass?time=552179")
-	log.Println(res.String())
+	//resty := Resty{}
+	//res, _ := resty.Get("http://top.baidu.com/user/pass?time=552179")
+	//log.Println(res.String())
+	//gjson1()
+	gjson2()
 }
