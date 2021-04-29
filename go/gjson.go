@@ -14,7 +14,7 @@ func gjson1()  {
 }
 
 func gjson2()  {
-	str := `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
+	str := `{"name":{"first":"Janet","last":"Prichard"},"age":47,"children":["Sara","Alex","Jack"]}`
 
 	m, ok := gjson.Parse(str).Value().(map[string]interface{})
 
@@ -22,6 +22,11 @@ func gjson2()  {
 		log.Println("not a map")
 	}
 
-	log.Println(m["name"])
 	log.Println(m["age"])
+
+	name := gjson.Get(str, "name").Map()
+	log.Println(name["first"])
+
+	children := gjson.Get(str, "children").Array()
+	log.Println(children[0])
 }
