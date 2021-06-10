@@ -125,7 +125,8 @@ func validate3()  {
 
 	errs := validate.ValidateMap(data, rules)
 	if len(errs) > 0 {
-		for _, err := range errs {
+		for field, err := range errs {
+			fmt.Println("field is " + field)
 			dumpValidateErrors(err)
 		}
 	}
