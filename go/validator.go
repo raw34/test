@@ -125,6 +125,8 @@ func validate3()  {
 
 	errs := validate.ValidateMap(data, rules)
 	if len(errs) > 0 {
-		dumpValidateErrors(errs)
+		for _, err := range errs {
+			dumpValidateErrors(err)
+		}
 	}
 }

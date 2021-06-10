@@ -50,6 +50,6 @@ func main() {
 	//zap3()
 	//zap4()
 	//validate1()
-	validate2()
-	//validate3()
+	//validate2()
+	validate3()
 }
