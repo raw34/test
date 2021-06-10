@@ -44,5 +44,9 @@ func main() {
 	//res, _ := resty.Get("http://top.baidu.com/user/pass?time=552179")
 	//log.Println(res.String())
 	//gjson1()
-	gjson2()
+	//gjson2()
+	//zap1()
+	//zap2()
+	//zap3()
+	zap4()
 }
