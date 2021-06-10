@@ -35,7 +35,7 @@ func dumpValidateErrors(errs interface{})  {
 		fmt.Println(fmt.Sprintf("Type is %s", err.Type()))
 		fmt.Println(fmt.Sprintf("Value is %s", err.Value()))
 		fmt.Println(fmt.Sprintf("Param is %s", err.Param()))
-		break
+		fmt.Println()
 	}
 }
 
