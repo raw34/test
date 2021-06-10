@@ -48,5 +48,8 @@ func main() {
 	//zap1()
 	//zap2()
 	//zap3()
-	zap4()
+	//zap4()
+	//validate1()
+	validate2()
+	//validate3()
 }
