@@ -1,9 +1,7 @@
 #!/bin/sh
 
 
-#log_dir="/alidata/log/www/dsp"
 log_dir="/tmp/log/www/dsp"
-#file_dir="/alidata/www/static_img/Upload/baidu_report"
 file_dir="${HOME}/Downloads"
 file_name="${log_dir}/big_files_$(date +%Y%m%d%H).log"
 
