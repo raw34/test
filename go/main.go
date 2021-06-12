@@ -2,7 +2,7 @@ package main
 
 func main() {
 	//hello()
-	//ping()
+	//setupGin()
 	//slice1()
 	//time1()
 	//time2()
