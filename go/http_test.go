@@ -2,10 +2,14 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"net/http/httptest"
 	netHttp "raw34.xyz/test/go/net/http"
 	"testing"
 )
@@ -43,4 +47,30 @@ func Test_httpDelete(t *testing.T) {
 }
 
 func Test_httpHead(t *testing.T) {
+}
+
+func Test_HttpMockServer(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		res := map[string]interface{}{"code": 0, "message": "", "data": map[string]interface{}{"a":"fff"}}
+		jsonRes, _ := json.Marshal(res)
+		w.WriteHeader(http.StatusOK)
+		w.Write(jsonRes)
+	}))
+	defer ts.Close()
+
+	api := ts.URL
+	log.Println("api", api)
+
+	res, err := http.Get(ts.URL)
+	if err != nil {
+		log.Fatalln("err", err)
+	}
+
+	body, err := io.ReadAll(res.Body)
+	res.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	assert.Equal(t, `{"code":0,"data":{"a":"fff"},"message":""}`, string(body))
 }
