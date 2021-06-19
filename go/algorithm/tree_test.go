@@ -7,20 +7,22 @@ import (
 
 func TestTree1_Case1(t *testing.T) {
 	conditions := make([][]string, 0)
+	expected := conditions
 
 	res := tree1(conditions)
 
-	assert.Equal(t, [][]string([][]string{}), res)
+	assert.Equal(t, expected, res)
 }
 
 func TestTree1_Case2(t *testing.T) {
 	conditions := [][]string{
 		[]string{"A1"},
 	}
+	expected := conditions
 
 	res := tree1(conditions)
 
-	assert.Equal(t, conditions, res)
+	assert.Equal(t, expected, res)
 }
 
 func TestTree1_Case3(t *testing.T) {
