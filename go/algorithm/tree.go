@@ -1,7 +1,5 @@
 package algorithm
 
-import "log"
-
 func tree1(conditions [][]string) [][]string {
 	lengthCondition := len(conditions)
 	if lengthCondition == 0 {
@@ -19,29 +17,23 @@ func tree1(conditions [][]string) [][]string {
 	//log.Println("len branch =", lengthBranch, "len condition =", lengthCondition, "len max arr =", lengthMaxArr)
 
 	result := make([][]string, lengthBranch)
-	indexes := make([][]int, lengthBranch)
 	for i := 0; i < lengthBranch; i++ {
 		result[i] = make([]string, lengthCondition)
-		indexes[i] = make([]int, lengthCondition)
 	}
 
-	log.Println("indexes start", indexes)
-
-	for i, index := range indexes {
+	for i, _ := range result {
 		for j := 0; j < lengthCondition; j++ {
 			curr := calculateIndex(i, j, lengthBranch, lengthMaxArr)
-			index[j] = curr
 			result[i][j] = conditions[j][curr]
 		}
 	}
-
-	log.Println("indexes end", indexes)
 
 	return result
 }
 
 func calculateIndex(i int, j int, length int, lengthMaxArr []int) int {
 	div := length
+	//log.Println("i", i, "j", j, "length", length, "div", div, "lengthMaxArr", lengthMaxArr)
 	for k := 0; k <= j; k++ {
 		div /= lengthMaxArr[k]
 	}
