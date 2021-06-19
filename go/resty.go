@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"raw34.xyz/test/go/resty"
+	"raw34/test/go/resty"
 )
 
 type Resty struct {

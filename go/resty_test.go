@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"raw34.xyz/test/go/resty"
+	"raw34/test/go/resty"
 	"testing"
 )
 

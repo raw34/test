@@ -10,7 +10,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptest"
-	netHttp "raw34.xyz/test/go/net/http"
+	netHttp "raw34/test/go/net/http"
 	"testing"
 )
 

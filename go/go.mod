@@ -1,4 +1,4 @@
-module raw34.xyz/test/go
+module raw34/test/go
 
 go 1.15
 

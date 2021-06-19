@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/url"
-	netHttp "raw34.xyz/test/go/net/http"
+	netHttp "raw34/test/go/net/http"
 	"strings"
 )
 
