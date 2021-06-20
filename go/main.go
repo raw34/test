@@ -1,7 +1,5 @@
 package main
 
-import "raw34/test/go/util"
-
 func main() {
 	//hello()
 	//setupGin()
@@ -53,5 +51,5 @@ func main() {
 	//zap4()
 	//validate1()
 	//validate2()
-	util.validate3()
+	//util.validate3()
 }
