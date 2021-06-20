@@ -1,4 +1,4 @@
-package main
+package syntax
 
 func slice1(names []string) []Animal {
 	animals := make([]Animal, 0)

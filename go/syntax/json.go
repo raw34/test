@@ -1,4 +1,4 @@
-package main
+package syntax
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ type User2 struct {
 }
 
 func json1()  {
-	data := User {
+	data := User{
 		100,
 		"raw34",
 		"Randy",
