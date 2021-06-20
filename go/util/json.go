@@ -1,8 +1,9 @@
-package syntax
+package util
 
 import (
 	"encoding/json"
 	"log"
+	"raw34/test/go/syntax"
 )
 
 type User2 struct {
@@ -12,7 +13,7 @@ type User2 struct {
 }
 
 func json1()  {
-	data := User{
+	data := syntax.User{
 		100,
 		"raw34",
 		"Randy",
@@ -45,7 +46,7 @@ func json2()  {
 		"userStatus": 0
 	}`
 
-	dataJson := User{}
+	dataJson := syntax.User{}
 
 	err := json.Unmarshal([]byte(dataString), &dataJson)
 
