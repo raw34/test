@@ -35,3 +35,7 @@ func time5() {
 	timestamp := theTime.Unix()
 	fmt.Println(timestamp)
 }
+
+func time6() int64 {
+	return time.Now().Unix()
+}
