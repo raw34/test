@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -66,7 +65,7 @@ func Test_HttpMockServer(t *testing.T) {
 		log.Fatalln("err", err)
 	}
 
-	body, err := io.ReadAll(res.Body)
+	body, err := ioutil.ReadAll(res.Body)
 	res.Body.Close()
 	if err != nil {
 		log.Fatal(err)
